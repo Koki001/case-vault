@@ -1,0 +1,191 @@
+.caseContainer {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.caseOptionsNav {
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+  padding: 10px 0;
+  align-items: center;
+}
+.caseOptionsNav .filtersNotice {
+  margin-bottom: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid black;
+}
+
+.caseContainer .viewCasesContainer {
+  width: 100%;
+  flex: 1;
+  padding: 20px;
+  max-width: 2000px;
+  margin-bottom: auto;
+  overflow: auto;
+  max-height: calc(100dvh - 350px);
+}
+
+.caseOptionsNav .caseSearchForm {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+.caseSearchForm button {
+  height: 40px;
+  align-self: flex-end;
+}
+.caseContainer .dynamicFields {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.caseContainer .dynamicFieldsInputs {
+  display: flex;
+  flex-wrap: wrap;
+}
+.caseContainer .dynamicFieldsContainerParent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.caseContainer .createCaseContainer {
+  width: 100%;
+  max-width: 1800px;
+  padding: 50px;
+}
+.createCaseContainer .createCaseHeadings {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.caseContainer .dynamicFieldsContainer {
+  padding: 20px 5px 5px;
+  margin-top: 20px;
+  border-bottom: 1px solid black;
+}
+.caseContainer .createCaseButton {
+  margin: 80px 0 50px 0;
+}
+.caseContainer > div:first-child {
+  width: 100%;
+}
+.caseOptionsNav > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.caseDetailsContainer {
+  width: 100%;
+  max-width: 1800px;
+  padding: 30px;
+  max-height: calc(100dvh - 250px);
+  overflow: auto;
+}
+
+.caseDetailsContainer .caseDetailsHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.caseDetailsHeading {
+  padding-bottom: 20px;
+}
+
+.caseDetailsContainer .caseDetailsReportParagraph {
+  white-space: pre-line;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 20px;
+  background-color: #e3f2fd;
+}
+
+.caseDetailsContainer .leadInvestigatorListItem {
+  display: flex;
+}
+.leadInvestigatorListItem p {
+  margin: 0;
+  padding-left: 5px;
+}
+.caseDetailsContainer p {
+  margin: 0;
+}
+
+.extraInfoUl {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.evidenceListItem {
+  margin-top: 50px;
+}
+.evidenceListItem h3 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.evidenceInternal {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+.evidenceHolder {
+  width: 600px;
+  min-width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  padding: 30px;
+  margin-top: 30px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.evidenceHolder .evidenceHolderDescription {
+  margin-top: 20px;
+}
+.evidenceHolderTop {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.evidenceHolderImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.evidenceHolderImage img {
+  padding: 30px 0;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.caseOptionsNav > div li {
+  margin: 0 20px;
+}
+.styledRow:hover {
+  cursor: pointer !important;
+  background-color: #e3f2fd !important;
+}
+.styledRowOpen {
+  background-color: #bbdefb !important;
+}

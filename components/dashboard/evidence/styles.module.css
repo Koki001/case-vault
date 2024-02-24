@@ -1,0 +1,123 @@
+.evidenceContainer {
+  width: 100%;
+  align-items: center;
+}
+.evidenceViewContainer {
+  position: relative;
+  width: 100%;
+  max-width: 2000px;
+  margin-bottom: auto;
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  max-height: calc(100dvh - 350px);
+}
+
+.evidenceOptionsNav {
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeeee;
+  padding: 10px 0;
+  align-items: center;
+  width: 100%;
+}
+.evidenceOptionsNav .evidenceSearchForm {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+.evidenceSearchForm button {
+  height: 40px;
+  align-self: flex-end;
+}
+.evidenceOptionsNav .filtersNotice {
+  margin-bottom: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid black;
+}
+
+.evidenceOptionsNav > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.evidenceOptionsNav > div li {
+  margin: 0 20px;
+}
+.createEvidenceContainer {
+  height: 100%;
+  width: 100%;
+  max-width: 1330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.createEvidenceContainer .topHalf {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.createEvidenceContainer .bottomHalf {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.evidencePhotoUpload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.evidencePhotoUpload p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.evidencePhotoUpload p svg {
+  margin-right: 20px;
+}
+
+.topHalf > div:first-child {
+  display: flex;
+  margin-bottom: 50px;
+}
+.bottomHalf > div:first-child {
+  margin-bottom: 50px;
+  display: flex;
+  width: 620px;
+  justify-content: space-evenly;
+}
+
+.evidenceDetailsContainer {
+  width: 100%;
+  padding: 30px;
+  max-width: 1800px;
+}
+.evidenceDetailsContainer button:first-child {
+  margin-bottom: 50px;
+}
+.evidenceDetailsContainer ul {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}

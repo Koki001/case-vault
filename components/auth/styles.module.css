@@ -1,0 +1,14 @@
+.loginFormContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loginFormContainer > div {
+  width: 100%;
+}
+.loginFormContainer button,
+.loginFormContainer input {
+  width: 100%;
+}

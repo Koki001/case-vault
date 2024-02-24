@@ -1,0 +1,21 @@
+.viewContainer {
+  width: 100%;
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+.viewContainer > div:first-child {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.viewContainer div.loaderContainer {
+  height: 100px !important;
+}
+

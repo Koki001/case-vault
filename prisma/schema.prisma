@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  email       String  @unique
+  firstName   String?
+  lastName    String?
+  password    String
+  badgeNumber String  @unique
+}
+
+model Case {
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  caseNumber      Int
+  type            String
+  createdAt       DateTime   @map("createdAt") // Map to the createdAt field
+  description     String
+  status          String
+  report          String?
+  evidence        Evidence[]
+  suspects        Suspect[]
+  victims         Victim[]
+  witnesses       Witness[]
+  officerInCharge Officer[]
+  notes           Notes[]
+}
+
+model Evidence {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  case           Case?          @relation(fields: [caseId], references: [id])
+  caseId         String?        @map("caseId") @db.ObjectId
+  addedOn        DateTime
+  custodyEntries CustodyEntry[]
+  description    String
+  locationFound  String
+  status         String
+  analysis       String?
+  type           String
+  photo          String?
+}
+
+model CustodyEntry {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  custody    Custody  @relation(fields: [custodyId], references: [id])
+  custodyId  String   @map("custodyId") @db.ObjectId
+  evidence   Evidence @relation(fields: [evidenceId], references: [id])
+  evidenceId String   @map("evidenceId") @db.ObjectId
+  accessedOn DateTime
+  returnedOn DateTime
+}
+
+model Custody {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  badgeNumber    String
+  custodyEntries CustodyEntry[]
+}
+
+model Suspect {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  age    String?
+  case   Case?   @relation(fields: [caseId], references: [id])
+  caseId String  @db.ObjectId
+}
+
+model Victim {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  case   Case?  @relation(fields: [caseId], references: [id])
+  caseId String @db.ObjectId
+}
+
+model Witness {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  case   Case?  @relation(fields: [caseId], references: [id])
+  caseId String @db.ObjectId
+}
+
+model Officer {
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  badge  String?
+  case   Case?   @relation(fields: [caseId], references: [id])
+  caseId String  @db.ObjectId
+}
+
+model Notes {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  case      Case?  @relation(fields: [caseId], references: [id])
+  caseId    String @db.ObjectId
+  content   String
+  createdAt String
+  createdBy String
+}

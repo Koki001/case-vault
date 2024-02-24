@@ -1,0 +1,22 @@
+.headerContainer {
+  position: relative;
+  background-color: black;
+  color: white;
+  padding: 30px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+/* to make up for image logo */
+.headerContainer h1,
+.headerContainer h2 {
+  margin-left: -100px;
+}
+.headerContainer h2 {
+  margin-top: 10px;
+  text-align: center;
+}
+.headerContainer .headerTitle {
+  margin: auto;
+}
