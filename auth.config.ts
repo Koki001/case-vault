@@ -2,6 +2,7 @@ import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { getUserByEmail } from "./data/user";
 import bcrypt from "bcryptjs";
+import { db } from "./lib/db";
 
 export default {
   providers: [
@@ -14,16 +15,20 @@ export default {
       },
       async authorize(credentials) {
         const { email, password } = credentials;
-        const user = await getUserByEmail(email as any);
+        // const user = await getUserByEmail(email as any);
 
-        if (!user || !user.password) return null;
+        if (typeof email === "string") {
+          const user = await db.user.findUnique({ where: { email } });
 
-        const passwordsMatch = await bcrypt.compare(
-          password as string,
-          user?.password
-        );
-        if (passwordsMatch) {
-          return user;
+          if (!user || !user.password) return null;
+
+          const passwordsMatch = await bcrypt.compare(
+            password as string,
+            user?.password
+          );
+          if (passwordsMatch) {
+            return user;
+          } else return null;
         } else return null;
       },
     }),

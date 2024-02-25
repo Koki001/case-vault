@@ -3,9 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { db } from "@/lib/db";
 import authConfig from "@/auth.config";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
 
 export const {
   handlers: { GET, POST },
@@ -17,7 +15,7 @@ export const {
     signIn: "/login",
     error: "/error",
   },
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
   ...authConfig,
