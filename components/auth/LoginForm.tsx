@@ -5,10 +5,12 @@ import { signIn } from "next-auth/react";
 import { useRef } from "react";
 
 import s from "./styles.module.css"
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const router = useRouter()
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,10 +21,12 @@ export const LoginForm = () => {
       const res = await signIn("credentials", {
         email,
         password,
+        redirect: false,
       });
 
       if (res) {
         console.log(res, "success");
+        router.push("/dashboard")
       }
     } catch (error) {
       console.log(error);
