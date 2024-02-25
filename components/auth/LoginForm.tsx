@@ -13,7 +13,7 @@ export const LoginForm = () => {
   const router = useRouter();
 
   const handleDemoMichael = async () => {
-    const email = "38556";
+    const email = "msmith@mail.com";
     const password = "123123";
     try {
       const res = await signIn("credentials", {
@@ -32,7 +32,7 @@ export const LoginForm = () => {
   };
 
   const handleDemoEmily = async () => {
-    const email = "38557";
+    const email = "edavis@mail.com";
     const password = "123123";
 
     try {
@@ -79,8 +79,8 @@ export const LoginForm = () => {
           inputRef={emailRef}
           id="email"
           name="email"
-          type="text"
-          label="Badge Number"
+          type="email"
+          label="Email"
           fullWidth
           required
         />
