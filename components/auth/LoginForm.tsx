@@ -15,17 +15,16 @@ export const LoginForm = () => {
   const handleDemoMichael = async () => {
     const email = "38556";
     const password = "123123";
-    console.log("michael demo")
     try {
       const res = await signIn("credentials", {
         email,
         password,
-        // redirect: false,
+        redirect: false,
       });
 
       if (res) {
         console.log(res, "DEMO MICHAEL");
-        // router.push("/dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -40,12 +39,12 @@ export const LoginForm = () => {
       const res = await signIn("credentials", {
         email,
         password,
-        // redirect: false,
+        redirect: false,
       });
 
       if (res) {
         console.log(res, "DEMO EMILY");
-        // router.push("/dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -61,12 +60,12 @@ export const LoginForm = () => {
       const res = await signIn("credentials", {
         email,
         password,
-        // redirect: false,
+        redirect: false,
       });
 
       if (res) {
         console.log(res, "REGULAR");
-        // router.push("/dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
