@@ -21,7 +21,7 @@ export const apiRoutes = [
   "/api/fetchCaseIds",
   "/api/fetchCaseDetails",
   "/api/fetchSpecificCases",
-  "/api/uploadFiles",
+  "/api/DELETE",
   "/api/uploadReport",
 ];
 
