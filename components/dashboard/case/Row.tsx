@@ -53,7 +53,7 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </StyledTableCell>
-        <StyledTableCell component="th" scope="row">
+        <StyledTableCell sx={{ fontWeight: "bold" }} component="th" scope="row">
           {row.caseNumber}
         </StyledTableCell>
         <StyledTableCell component="th" scope="row">
@@ -63,10 +63,10 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
           {row.type}
         </StyledTableCell>
         <StyledTableCell align="right"></StyledTableCell>
-        <StyledTableCell align="right">
-          {row.status}
+        <StyledTableCell align="right">{row.status}</StyledTableCell>
+        <StyledTableCell sx={{ fontWeight: "bold" }} align="right">
+          {row.description}
         </StyledTableCell>
-        <StyledTableCell align="right">{row.description}</StyledTableCell>
         <StyledTableCell align="right">
           {formatDate(row.createdAt)}
         </StyledTableCell>
@@ -83,7 +83,7 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
             <Button
               variant="contained"
               onClick={() => handleCaseDetails(cases[caseIndex])}
-              sx={{ width: "100%", marginTop: "5px" }}
+              sx={{ width: "100%", marginTop: "15px" }}
             >
               VIEW AND EDIT CASE DETAILS HERE
             </Button>
@@ -98,16 +98,28 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <StyledTableRow>
-                    <StyledTableCellSecondary align="center">
+                    <StyledTableCellSecondary
+                      sx={{ fontWeight: "bold" }}
+                      align="center"
+                    >
                       Victims
                     </StyledTableCellSecondary>
-                    <StyledTableCellSecondary align="center">
+                    <StyledTableCellSecondary
+                      sx={{ fontWeight: "bold" }}
+                      align="center"
+                    >
                       Suspects
                     </StyledTableCellSecondary>
-                    <StyledTableCellSecondary align="center">
+                    <StyledTableCellSecondary
+                      sx={{ fontWeight: "bold" }}
+                      align="center"
+                    >
                       Witnesses
                     </StyledTableCellSecondary>
-                    <StyledTableCellSecondary align="center">
+                    <StyledTableCellSecondary
+                      sx={{ fontWeight: "bold" }}
+                      align="center"
+                    >
                       Officer In Charge
                     </StyledTableCellSecondary>
                     {/* <StyledTableCellSecondary align="center">

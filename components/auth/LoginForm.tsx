@@ -4,13 +4,52 @@ import { Button, TextField } from "@mui/material";
 import { signIn } from "next-auth/react";
 import { useRef } from "react";
 
-import s from "./styles.module.css"
+import s from "./styles.module.css";
 import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const router = useRouter()
+  const router = useRouter();
+
+  const handleDemoMichael = async () => {
+    const email = "38556";
+    const password = "123123";
+
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res) {
+        console.log(res, "success");
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDemoEmily = async () => {
+    const email = "38557";
+    const password = "123123";
+
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res) {
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +65,7 @@ export const LoginForm = () => {
 
       if (res) {
         console.log(res, "success");
-        router.push("/dashboard")
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -59,6 +98,12 @@ export const LoginForm = () => {
       </div>
       <Button type="submit" variant="contained" color="primary">
         Log In
+      </Button>
+      <Button onClick={handleDemoMichael} variant="contained" type="button">
+        Log in as Michael Smith
+      </Button>
+      <Button onClick={handleDemoEmily} variant="contained" type="button">
+        Log in as Emily Davis
       </Button>
     </form>
   );

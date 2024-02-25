@@ -91,31 +91,40 @@ const EvidenceDetails = () => {
       <Button variant="contained" color="error" onClick={() => router.back()}>
         Back
       </Button>
-      {evidenceDetails ? (
-        <ul>
-          <li>Evidence ID: {evidenceDetails.id}</li>
-          <li>
-            Case Name - ID: {evidenceDetails.case.description} -{" "}
-            {evidenceDetails.caseId}
-          </li>
-          <li>Added On: {formatDate(evidenceDetails.addedOn)}</li>
-          <li>Description: {evidenceDetails.description}</li>
-          <li>Location Found: {evidenceDetails.locationFound}</li>
-          <li>Status: {evidenceDetails.status}</li>
-          <li>Type: {evidenceDetails.type}</li>
-          {evidenceDetails.photo && (
-            <Image
-              src={evidenceDetails.photo}
-              alt="evidence"
-              width={500}
-              height={500}
-              style={{margin: "auto"}}
-            />
-          )}
-        </ul>
-      ) : (
-        update && <Loader />
-      )}
+      <div className={s.evidenceDetailsHolder}>
+        {evidenceDetails ? (
+          <div className={s.evidenceHolder}>
+            <div className={s.evidenceHolderTop}>
+              <div>
+                <p>Evidence ID: {evidenceDetails.id}</p>
+                <p>Date Added: {formatDate(evidenceDetails.addedOn)}</p>
+              </div>
+              <div>
+                <p>Type: {evidenceDetails.type} </p>
+                <p>Status: {evidenceDetails.status}</p>
+              </div>
+            </div>
+            <div className={s.evidenceHolderImage}>
+              {evidenceDetails.photo && (
+                <Image
+                  src={evidenceDetails.photo}
+                  alt={evidenceDetails.description}
+                  height={600}
+                  width={700}
+                />
+              )}
+              <div>
+                <p>Found At: {evidenceDetails.locationFound}</p>
+                <p className={s.evidenceHolderDescription}>
+                  {evidenceDetails.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          update && <Loader />
+        )}
+      </div>
     </div>
   );
 };

@@ -12,3 +12,7 @@
 .loginFormContainer input {
   width: 100%;
 }
+
+.loginFormContainer button {
+  margin-bottom: 5px;
+}

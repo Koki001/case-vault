@@ -45,7 +45,7 @@ export const POST = async (req: any, res: any) => {
       chunks.push(chunk);
     }
     const fileContents = Buffer.concat(chunks).toString("utf-8");
-    console.log(fileContents)
+
     return NextResponse.json({ fileContents }, { status: 201 });
   } catch (error) {
     console.error("Error retrieving file:", error);

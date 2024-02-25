@@ -103,7 +103,7 @@ const Sidebar = () => {
           </ToggleButtonGroup>
         </ul>
         <div className={s.sidebarLogout}>
-          <Button onClick={() => signOut()} variant="contained" color="warning">
+          <Button onClick={() => signOut()} variant="contained" color="error">
             Sign Out
           </Button>
         </div>

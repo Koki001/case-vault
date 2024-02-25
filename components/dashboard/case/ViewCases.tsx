@@ -155,7 +155,7 @@ const ViewCases = ({ caseFilters }: Props) => {
                       Status
                     </StyledTableCell>
                     <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
-                      Description
+                      Title / Description
                     </StyledTableCell>
                     <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
                       Created At

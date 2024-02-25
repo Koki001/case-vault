@@ -34,6 +34,7 @@ interface Labels {
 
 const CreateCase = () => {
   const router = useRouter();
+  const [reportFile, setReportFile] = useState<File | null>(null);
   const [formData, setFormData] = useState<FormData>({
     description: "",
     report: "",
@@ -80,7 +81,15 @@ const CreateCase = () => {
     }
   };
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setReportFile(file);
+    }
+  };
+
   const handleAddField = (field: keyof FormData) => {
+    console.log(formData);
     if (
       field === "suspects" ||
       field === "witnesses" ||
@@ -111,14 +120,20 @@ const CreateCase = () => {
   const handleCreateCase = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      const reportContent = formData.report;
-      const reportFile = new File([reportContent], "report.txt", {
-        type: "text/plain",
-      });
-
       const formDataWithReport = new FormData();
-      formDataWithReport.append("file", reportFile);
       formDataWithReport.append("case", formData.description);
+
+      if (reportFile === null) {
+        // Use textFile if reportFile is null
+        const reportContent = formData.report;
+        const textFile = new File([reportContent], "report.txt", {
+          type: "text/plain",
+        });
+        formDataWithReport.append("file", textFile);
+      } else {
+        // Use reportFile if reportFile is not null
+        formDataWithReport.append("file", reportFile);
+      }
 
       const res = await fetch("api/createCase", {
         method: "POST",
@@ -259,12 +274,29 @@ const CreateCase = () => {
         margin="normal"
         multiline
         rows={12}
+        disabled={reportFile !== null}
       />
-      <Button variant="outlined" component="label">
-        Upload Report
-        <input type="file" hidden />
-      </Button>
-
+      <div>
+        <Button
+          disabled={formData.report !== ""}
+          variant="outlined"
+          component="label"
+        >
+          Upload Report
+          <input
+            type="file"
+            hidden
+            accept=".doc, .docx"
+            onChange={handleFileUpload}
+          />
+        </Button>
+        {reportFile !== null && (
+          <div>
+            file uploaded{" "}
+            <Button onClick={() => setReportFile(null)}>delete</Button>
+          </div>
+        )}
+      </div>
       {/* Render dynamic fields */}
       <div className={s.dynamicFieldsContainerParent}>
         {Object.keys(formData).map((field) => {
@@ -291,7 +323,12 @@ const CreateCase = () => {
         })}
       </div>
 
-      <Button className={s.createCaseButton} variant="outlined" type="submit">
+      <Button
+        className={s.createCaseButton}
+        variant="contained"
+        color="success"
+        type="submit"
+      >
         Open new case
       </Button>
     </form>

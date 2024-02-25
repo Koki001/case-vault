@@ -10,6 +10,7 @@ import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import UploadEvidence from "../evidence/UploadEvidence";
 import { useEvidenceStore } from "../../../store/evidenceSlice";
+import parse from "html-react-parser";
 
 interface CaseDetailsState {
   id: string;
@@ -79,7 +80,6 @@ const CaseDetails = () => {
     };
 
     if (!caseDetails || caseDetails.id !== caseIdParams || update) {
-
       handleCaseDetails(caseIdParams);
     }
   }, [caseDetails, caseIdParams, update, setUpdate, setCaseDetails]);
@@ -90,16 +90,18 @@ const CaseDetails = () => {
       const formData = new FormData();
       formData.append("id", caseIdParams.toString());
       try {
-        const response = await fetch("/api/readTxt", {
+        const response = await fetch("/api/readDoc", {
           method: "POST",
           body: formData,
         });
         if (!response.ok) {
           throw new Error("Failed to load file");
         }
-        const text = await response.json();
-        const data = text.fileContents;
-        setFullReport(data);
+
+        const { fileName, fileContents } = await response.json();
+        setFullReport(fileContents);
+        console.log(fileName);
+    
       } catch (error) {
         console.error("Error loading file:", error);
       }
@@ -146,7 +148,7 @@ const CaseDetails = () => {
           <h2>{caseDetails.description}</h2>
           <p>Case No: {caseDetails.caseNumber}</p>
         </div>
-        <ul>
+        <ul className={s.caseDetailsHeadingList}>
           <li>Case ID: {caseDetails.id}</li>
           <li>{formatDate(caseDetails.createdAt)}</li>
           <li>{caseDetails.type}</li>
@@ -158,14 +160,19 @@ const CaseDetails = () => {
           </li>
         </ul>
         <Button
-          sx={{ marginTop: "10px", paddingLeft: "0" }}
+          variant="outlined"
+          sx={{ margin: "30px 0", width: "100%" }}
           disabled={fullReport !== ""}
           onClick={handleReadFullReport}
         >
           Read full report
         </Button>
         {viewReport && fullReport && (
-          <p className={s.caseDetailsReportParagraph}>{fullReport}</p>
+          // <p className={s.caseDetailsReportParagraph}>{fullReport}</p>
+
+          <div className={s.caseDetailsReportParagraph}>
+            <div>{parse(fullReport)}</div>
+          </div>
         )}
         <ul className={s.extraInfoUl}>
           {caseDetails.victims.length > 0 && (
@@ -229,7 +236,9 @@ const CaseDetails = () => {
             </li>
           )}
         </ul>
-        <Button variant="contained" onClick={() => setOpen(true)}>Add Evidence</Button>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Add Evidence
+        </Button>
         <Modal
           open={open}
           onClose={() => setOpen(false)}
@@ -270,7 +279,7 @@ const CaseDetails = () => {
                       <div>
                         <p>Found At: {item.locationFound}</p>
                         <p className={s.evidenceHolderDescription}>
-                          Description: {item.description}{" "}
+                          {item.description}{" "}
                         </p>
                       </div>
                     </div>

@@ -13,6 +13,7 @@ import s from "./styles.module.css";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import { useEvidenceStore } from "../../../store/evidenceSlice";
+import Loader from "../../loader/Loader";
 
 interface CaseId {
   id: string;
@@ -52,6 +53,7 @@ const initialEvidenceState = {
 const UploadEvidence = ({ propId }: any) => {
   const [evidence, setEvidence] = useState(initialEvidenceState);
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
+  const update = useEvidenceStore((state) => state.update)
 
   const [caseIdCollection, setCaseIdCollection] = useState<CaseId[]>([]);
   const [photo, setPhoto] = useState<File | null>(null);
@@ -125,128 +127,133 @@ const UploadEvidence = ({ propId }: any) => {
       console.log(error);
     }
   };
-  return (
-    <div className={s.createEvidenceContainer}>
-      <div className={s.topHalf}>
-        <div>
-          {propId ? (
+  if (!update) {
+
+    return (
+      <div className={s.createEvidenceContainer}>
+        <div className={s.topHalf}>
+          <div>
+            {propId ? (
+              <TextField
+                label="CASE ID"
+                variant="outlined"
+                value={propId}
+                disabled
+                sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
+              />
+            ) : (
+              <Autocomplete
+                sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
+                id="case-id-choices"
+                freeSolo
+                options={caseIdCollection.map((option) => option.id)}
+                renderInput={(params) => (
+                  <TextField {...params} label="Case ID" />
+                )}
+                onChange={(e: any, val: any) => {
+                  setEvidence((prev) => ({ ...prev, caseId: val }));
+                }}
+              />
+            )}
             <TextField
-              label="CASE ID"
+              label="Discovery Site Address"
               variant="outlined"
-              value={propId}
-              disabled
-              sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
+              value={evidence.location}
+              onChange={(e) =>
+                setEvidence((prev) => ({ ...prev, location: e.target.value }))
+              }
+              // multiline
+              rows={1}
+              sx={{ minWidth: 300, marginBottom: "5px" }}
             />
-          ) : (
-            <Autocomplete
+          </div>
+          <div>
+            <FormControl
+              variant="outlined"
               sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
-              id="case-id-choices"
-              freeSolo
-              options={caseIdCollection.map((option) => option.id)}
-              renderInput={(params) => (
-                <TextField {...params} label="Case ID" />
-              )}
-              onChange={(e: any, val: any) => {
-                setEvidence((prev) => ({ ...prev, caseId: val }));
-              }}
-            />
-          )}
+            >
+              <InputLabel id="evidence-status">Status</InputLabel>
+              <Select
+                labelId="evidence-status"
+                id="evidence-status-id"
+                label="Status"
+                value={evidence.status}
+                onChange={(e) =>
+                  setEvidence((prev) => ({ ...prev, status: e.target.value }))
+                }
+              >
+                {statusOptions &&
+                  statusOptions.map((item, index) => {
+                    return (
+                      <MenuItem key={"status" + index} value={item}>
+                        {item}
+                      </MenuItem>
+                    );
+                  })}
+              </Select>
+            </FormControl>
+            <FormControl
+              variant="outlined"
+              sx={{ minWidth: 300, marginBottom: "5px" }}
+            >
+              <InputLabel id="evidence-type">Type</InputLabel>
+              <Select
+                labelId="evidence-type"
+                id="evidence-type-id"
+                label="Type"
+                value={evidence.type}
+                onChange={(e) =>
+                  setEvidence((prev) => ({ ...prev, type: e.target.value }))
+                }
+              >
+                {typeOptions &&
+                  typeOptions.map((item, index) => {
+                    return (
+                      <MenuItem key={"status" + index} value={item}>
+                        {item}
+                      </MenuItem>
+                    );
+                  })}
+              </Select>
+            </FormControl>
+          </div>
+        </div>
+        <div className={s.bottomHalf}>
+          <div className={s.evidencePhotoUpload}>
+            {photo ? (
+              <p>
+                <TaskAltIcon color="success" /> {photo.name} selected
+              </p>
+            ) : (
+              <p>
+                <HighlightOffIcon color="error" /> No Photo Selected
+              </p>
+            )}
+            <Button variant="contained" component="label">
+              Upload Evidence Photo
+              <input onChange={handlePhotoUpload} type="file" hidden />
+            </Button>
+          </div>
           <TextField
-            label="Discovery Site Address"
+            label="Description"
             variant="outlined"
-            value={evidence.location}
+            value={evidence.description}
             onChange={(e) =>
-              setEvidence((prev) => ({ ...prev, location: e.target.value }))
+              setEvidence((prev) => ({ ...prev, description: e.target.value }))
             }
-            // multiline
-            rows={1}
-            sx={{ minWidth: 300, marginBottom: "5px" }}
+            sx={{ width: "620px" }}
+            multiline
+            minRows={4}
           />
         </div>
-        <div>
-          <FormControl
-            variant="outlined"
-            sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
-          >
-            <InputLabel id="evidence-status">Status</InputLabel>
-            <Select
-              labelId="evidence-status"
-              id="evidence-status-id"
-              label="Status"
-              value={evidence.status}
-              onChange={(e) =>
-                setEvidence((prev) => ({ ...prev, status: e.target.value }))
-              }
-            >
-              {statusOptions &&
-                statusOptions.map((item, index) => {
-                  return (
-                    <MenuItem key={"status" + index} value={item}>
-                      {item}
-                    </MenuItem>
-                  );
-                })}
-            </Select>
-          </FormControl>
-          <FormControl
-            variant="outlined"
-            sx={{ minWidth: 300, marginBottom: "5px" }}
-          >
-            <InputLabel id="evidence-type">Type</InputLabel>
-            <Select
-              labelId="evidence-type"
-              id="evidence-type-id"
-              label="Type"
-              value={evidence.type}
-              onChange={(e) =>
-                setEvidence((prev) => ({ ...prev, type: e.target.value }))
-              }
-            >
-              {typeOptions &&
-                typeOptions.map((item, index) => {
-                  return (
-                    <MenuItem key={"status" + index} value={item}>
-                      {item}
-                    </MenuItem>
-                  );
-                })}
-            </Select>
-          </FormControl>
-        </div>
+        <Button variant="contained" color="success" onClick={handleCreateEvidence}>
+          Add Evidence
+        </Button>
       </div>
-      <div className={s.bottomHalf}>
-        <div className={s.evidencePhotoUpload}>
-          {photo ? (
-            <p>
-              <TaskAltIcon color="success" /> {photo.name} selected
-            </p>
-          ) : (
-            <p>
-              <HighlightOffIcon color="error" /> No Photo Selected
-            </p>
-          )}
-          <Button variant="contained" component="label">
-            Upload Evidence Photo
-            <input onChange={handlePhotoUpload} type="file" hidden />
-          </Button>
-        </div>
-        <TextField
-          label="Description"
-          variant="outlined"
-          value={evidence.description}
-          onChange={(e) =>
-            setEvidence((prev) => ({ ...prev, description: e.target.value }))
-          }
-          sx={{ width: "620px" }}
-          multiline
-          minRows={4}
-        />
-      </div>
-      <Button variant="outlined" onClick={handleCreateEvidence}>
-        Add Evidence
-      </Button>
-    </div>
-  );
+    );
+  } else {
+    return (<Loader />)
+  }
 };
 
 export default UploadEvidence;

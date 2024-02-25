@@ -28,7 +28,6 @@ const uploadFileToS3 = async (file: any, fileName: any, caseId: string) => {
     Bucket: process.env.NEXT_PUBLIC_AMAZON_BUCKET_NAME,
     Key: `evidenceFolder/reports/${caseId}/${fileName}`,
     Body: fileBuffer,
-    ContentType: "text/plain",
   };
 
   const command = new PutObjectCommand(params);
