@@ -39,12 +39,12 @@ export const LoginForm = () => {
       const res = await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        redirect: true,
       });
 
       if (res) {
         console.log(res, "DEMO EMILY");
-        router.push("/dashboard");
+        // router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
