@@ -11,6 +11,7 @@ export const apiAuthPrefix = "/api/auth";
 export const apiRoutes = [
   "/api/register",
   "/api/getUser",
+  "/api/getUserBadge",
   "/api/fetchEvidence",
   "/api/fetchEvidenceDetails",
   "/api/fetchSpecificEvidence",
