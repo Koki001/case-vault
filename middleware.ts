@@ -18,10 +18,10 @@ export default auth((req) => {
   const isApiRoute = apiRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
+  console.log(nextUrl)
   if (isApiAuthRoute || isApiRoute) {
     return;
   }
-
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
