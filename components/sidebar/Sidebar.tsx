@@ -33,7 +33,7 @@ const sidebarStyleObj = {
 const Sidebar = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentView = searchParams.get("view") || "overview";
+  const currentView = searchParams?.get("view") || "overview";
 
   const { data: session, status } = useSession();
   const { firstName, lastName, email, badgeNumber } = useUserStore();

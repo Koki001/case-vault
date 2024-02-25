@@ -26,8 +26,8 @@ import { useEvidenceStore } from "@/store/evidenceSlice";
 const Evidence = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentView = searchParams.get("evidenceOptions") || "viewEvidence";
-  const isEvidenceDetails = searchParams.get("evidenceId");
+  const currentView = searchParams?.get("evidenceOptions") || "viewEvidence";
+  const isEvidenceDetails = searchParams?.get("evidenceId");
 
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
 

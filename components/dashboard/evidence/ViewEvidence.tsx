@@ -38,8 +38,8 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentView = searchParams.get("view");
-  const isEvidenceDetails = searchParams.get("evidenceId");
+  const currentView = searchParams?.get("view");
+  const isEvidenceDetails = searchParams?.get("evidenceId");
 
   const validateEvidenceData = (evidenceData: EvidenceData): boolean => {
     for (const key in evidenceData) {

@@ -18,7 +18,7 @@ import s from "./page.module.css";
 
 const DashboardPage = () => {
   const searchParams = useSearchParams();
-  const currentView = searchParams.get("view") || "overview";
+  const currentView = searchParams?.get("view") || "overview";
   const { data: session, status } = useSession();
   const { email: userEmail, setUser } = useUserStore((state) => state);
 

@@ -32,7 +32,7 @@ const CaseDetails = () => {
   const caseDetails = useCaseStore((state) => state.caseDetails);
   const update = useEvidenceStore((state) => state.update);
   const searchParams = useSearchParams();
-  const caseIdParams = searchParams.get("id");
+  const caseIdParams = searchParams?.get("id");
   const router = useRouter();
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);

@@ -36,8 +36,8 @@ const Case = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const setUpdate = useCaseStore((state) => state.setUpdate);
-  const currentView = searchParams.get("caseOptions") || "viewCases";
-  const isCaseDetails = searchParams.get("id");
+  const currentView = searchParams?.get("caseOptions") || "viewCases";
+  const isCaseDetails = searchParams?.get("id");
 
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,

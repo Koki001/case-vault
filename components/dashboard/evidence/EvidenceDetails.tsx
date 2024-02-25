@@ -32,7 +32,7 @@ const EvidenceDetails = () => {
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
   const update = useEvidenceStore((state) => state.update);
   const searchParams = useSearchParams();
-  const evidenceIdParams = searchParams.get("evidenceId");
+  const evidenceIdParams = searchParams?.get("evidenceId");
   const router = useRouter();
 
   // State to hold evidence details

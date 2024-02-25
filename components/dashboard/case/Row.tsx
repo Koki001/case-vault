@@ -23,8 +23,8 @@ import Link from "next/link";
 const Row = ({ row, formatDate, cases, caseIndex }: any) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentView = searchParams.get("view");
-  const isCaseDetails = searchParams.get("id");
+  const currentView = searchParams?.get("view");
+  const isCaseDetails = searchParams?.get("id");
 
   const [open, setOpen] = useState(false);
   const maxLength = Math.max(

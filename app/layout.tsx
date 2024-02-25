@@ -4,6 +4,8 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Header from "@/components/header/Header";
+import { Suspense } from "react";
+import Loader from "@/components/loader/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>
-          <Header />
-          <Sidebar />
-          {children}
-        </SessionProvider>
+        <Suspense fallback={<Loader />}>
+          <SessionProvider>
+            <Header />
+            <Sidebar />
+            {children}
+          </SessionProvider>
+        </Suspense>
       </body>
     </html>
   );

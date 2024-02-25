@@ -36,7 +36,7 @@ const ViewCases = ({ caseFilters }: Props) => {
   const setUpdate = useCaseStore((state) => state.setUpdate);
 
   const searchParams = useSearchParams();
-  const isCaseDetails = searchParams.get("id");
+  const isCaseDetails = searchParams?.get("id");
 
   const validateCaseData = (caseData: CaseData): boolean => {
     for (const key in caseData) {
