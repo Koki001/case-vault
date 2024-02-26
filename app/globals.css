@@ -2,7 +2,6 @@ html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  min-width: 1200px;
 }
 body {
   margin: 0;
@@ -12,6 +11,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   margin-left: 160px;
+  min-width: 1000px;
 }
 article,
 aside,
