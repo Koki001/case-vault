@@ -23,8 +23,6 @@
 import { compare } from "bcryptjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import GitHub from "next-auth/providers/github";
-import Google from "next-auth/providers/google";
 import { authConfig } from "./auth.config";
 import { getUserByEmail } from "./data/user";
 
@@ -36,14 +34,6 @@ export const {
 } = NextAuth({
   ...authConfig,
   providers: [
-    GitHub({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
     Credentials({
       name: "Credentials",
       credentials: {

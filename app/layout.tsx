@@ -22,15 +22,15 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang="en">
-      <Suspense>
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <Suspense>
           <SessionProvider session={session}>
             <Header />
             <Sidebar />
             {children}
           </SessionProvider>
-        </body>
-      </Suspense>
+        </Suspense>
+      </body>
     </html>
   );
 }
