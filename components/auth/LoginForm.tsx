@@ -57,7 +57,7 @@ export const LoginForm = () => {
     const password = passwordRef.current?.value;
 
     try {
-      const res = await signIn("credentials", {
+      const res = await signIn("badge-login", {
         email,
         password,
         redirect: true,

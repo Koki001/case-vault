@@ -36,10 +36,7 @@ export const {
   providers: [
     Credentials({
       name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
+      id: "badge-login",
       async authorize(credentials) {
         console.log("auth credentials")
         const { email, password } = credentials;
