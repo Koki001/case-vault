@@ -1,3 +1,5 @@
+"use client"
+
 // Import necessary dependencies
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
