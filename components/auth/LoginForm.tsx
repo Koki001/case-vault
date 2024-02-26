@@ -16,7 +16,7 @@ export const LoginForm = () => {
     const email = "msmith@mail.com";
     const password = "123123";
     try {
-      const res = await signIn("credentials", {
+      const res = await signIn("Credentials", {
         email,
         password,
         redirect: false,

@@ -13,10 +13,10 @@ export const {
   signOut,
 } = NextAuth({
   ...authConfig,
-  pages: {
-    signIn: "/login",
-    error: "/error",
-  },
+  // pages: {
+  //   signIn: "/login",
+  //   error: "/error",
+  // },
   providers: [
     Credentials({
       name: "Credentials",
@@ -34,9 +34,9 @@ export const {
           password as string,
           user?.password
         );
-        if (passwordsMatch) return user;
+        if (!passwordsMatch) return null;
 
-        return null;
+        return user;
       },
     }),
   ],
