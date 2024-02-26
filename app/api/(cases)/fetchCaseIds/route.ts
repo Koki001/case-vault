@@ -7,6 +7,7 @@ export const GET = async () => {
     const cases = await db.case.findMany({
       select: {
         id: true,
+        caseNumber: true,
       },
       orderBy: { createdAt: "desc" },
     });

@@ -1,25 +1,3 @@
-// import NextAuth from "next-auth";
-// import { PrismaAdapter } from "@auth/prisma-adapter";
-
-// import { db } from "@/lib/db";
-// import authConfig from "@/auth.config";
-// import { getUserByEmail, getUserById } from "./data/user";
-
-// export const {
-//   handlers: { GET, POST },
-//   auth,
-//   signIn,
-//   signOut,
-// } = NextAuth({
-//   pages: {
-//     signIn: "/login",
-//     error: "/error",
-//   },
-//   adapter: PrismaAdapter(db),
-//   secret: process.env.NEXT_AUTH_SECRET,
-//   session: { strategy: "jwt" },
-//   ...authConfig,
-// });
 import { compare } from "bcryptjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
@@ -38,7 +16,6 @@ export const {
       name: "Credentials",
       id: "badge-login",
       async authorize(credentials) {
-        console.log("auth credentials")
         const { email, password } = credentials;
         const user = await getUserByEmail(email as any);
         console.log(user);

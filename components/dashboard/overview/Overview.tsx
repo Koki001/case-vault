@@ -14,7 +14,7 @@ import {
 
 import s from "./styles.module.css";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { dataset } from "@/data/staticOverview";
 
@@ -31,9 +31,12 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const Overview = () => {
-
   const [townOptions, setTownOptions] = useState("burlington");
-  console.log("lol");
+  useEffect(() => {
+    console.log(
+      "PLEASE IGNORE WARNING ABOUT `XAxis: Support for defaultProps will be removed`. Recharts is working on it! "
+    );
+  }, []);
   return (
     <div className={s.overviewContainer}>
       <div className={s.overviewContainerTasks}>

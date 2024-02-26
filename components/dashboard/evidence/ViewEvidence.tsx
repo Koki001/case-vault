@@ -236,7 +236,7 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
               </TableContainer>
             </div>
           ) : update ? (
-            <Loader />
+            <Loader message={"Fetching Evidence"} />
           ) : (
             !update &&
             evidence.length === 0 && (

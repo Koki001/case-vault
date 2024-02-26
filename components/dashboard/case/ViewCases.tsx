@@ -181,7 +181,7 @@ const ViewCases = ({ caseFilters }: Props) => {
               </TableContainer>
             </div>
           ) : update ? (
-            <Loader />
+            <Loader message={"Fetching Cases"} />
           ) : (
             !update &&
             cases.length === 0 && (

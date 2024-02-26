@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Button,
@@ -15,6 +15,7 @@ import IconButton from "@mui/material/IconButton";
 
 import s from "./styles.module.css";
 import { useRouter } from "next/navigation";
+import Loader from "../../loader/Loader";
 
 interface FormData {
   description: string;
@@ -56,6 +57,7 @@ const CreateCase = () => {
   };
 
   const setUpdate = useCaseStore((state) => state.setUpdate);
+  const update = useCaseStore((state) => state.update);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -91,7 +93,7 @@ const CreateCase = () => {
   };
 
   const handleAddField = (field: keyof FormData) => {
-    console.log(formData);
+ 
     if (
       field === "suspects" ||
       field === "witnesses" ||
@@ -122,6 +124,7 @@ const CreateCase = () => {
   const handleCreateCase = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
     try {
+      setUpdate(true)
       const formDataWithReport = new FormData();
       formDataWithReport.append("case", formData.description);
 
@@ -144,7 +147,7 @@ const CreateCase = () => {
         },
         body: JSON.stringify(formData),
       });
-
+      
       if (res.ok) {
         const reportCaseId = await res.json();
         formDataWithReport.append("caseId", reportCaseId.caseId);
@@ -166,6 +169,7 @@ const CreateCase = () => {
             witnesses: [],
             officerInCharge: [],
           });
+          setUpdate(false)
           router.push(`?view=case`);
         }
       }
@@ -221,6 +225,7 @@ const CreateCase = () => {
 
   return (
     <form className={s.createCaseContainer} onSubmit={handleCreateCase}>
+      {update && <Loader message={"Creating Case"} />}
       <div className={s.createCaseHeadings}>
         <TextField
           placeholder="Case Title / Description"
@@ -330,6 +335,7 @@ const CreateCase = () => {
         variant="contained"
         color="success"
         type="submit"
+        disabled={update}
       >
         Open new case
       </Button>

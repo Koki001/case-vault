@@ -1,6 +1,10 @@
 import s from "./styles.module.css";
 
-const Loader = () => {
+interface LoaderProps {
+  message?: string; // Optional message prop
+}
+
+const Loader: React.FC<LoaderProps> = ({ message }) => {
   return (
     <div className={s.loaderContainer}>
       <div className={s.ldsEllipsis}>
@@ -8,9 +12,10 @@ const Loader = () => {
         <div></div>
         <div></div>
         <div></div>
-        <h3>Loading</h3>
       </div>
+      <h3>{message || "Loading"}</h3>
     </div>
   );
 };
+
 export default Loader;

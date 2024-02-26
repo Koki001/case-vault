@@ -19,6 +19,7 @@ import Loader from "../../loader/Loader";
 
 interface CaseId {
   id: string;
+  caseNumber: string;
 }
 
 const statusOptions = [
@@ -129,6 +130,7 @@ const UploadEvidence = ({ propId }: any) => {
       console.log(error);
     }
   };
+  console.log(evidence)
   if (!update) {
 
     return (
@@ -148,12 +150,15 @@ const UploadEvidence = ({ propId }: any) => {
                 sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
                 id="case-id-choices"
                 freeSolo
-                options={caseIdCollection.map((option) => option.id)}
+                options={caseIdCollection.map((option) => ({
+                  id: option.id,
+                  label: `#${option.caseNumber} - ${option.id}`,
+                }))}
                 renderInput={(params) => (
-                  <TextField {...params} label="Case ID" />
+                  <TextField {...params} label="Case # - ID" />
                 )}
                 onChange={(e: any, val: any) => {
-                  setEvidence((prev) => ({ ...prev, caseId: val }));
+                  setEvidence((prev) => ({ ...prev, caseId: (val && val.id) ? val.id : "" }));
                 }}
               />
             )}
@@ -248,7 +253,11 @@ const UploadEvidence = ({ propId }: any) => {
             minRows={4}
           />
         </div>
-        <Button variant="contained" color="success" onClick={handleCreateEvidence}>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={handleCreateEvidence}
+        >
           Add Evidence
         </Button>
       </div>

@@ -260,3 +260,8 @@ footer {
   background-color: yellow;
   margin-top: 50px;
 }
+
+main {
+  padding: 100px 0;
+  width: 80%;
+}

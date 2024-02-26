@@ -14,29 +14,28 @@ export const RegisterForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // const formData = {
+    //   firstName: firstNameRef.current?.value,
+    //   lastName: lastNameRef.current?.value,
+    //   email: emailRef.current?.value,
+    //   password: passwordRef.current?.value,
+    //   confirmPassword: confirmPasswordRef.current?.value,
+    // };
 
-    const formData = {
-      firstName: firstNameRef.current?.value,
-      lastName: lastNameRef.current?.value,
-      email: emailRef.current?.value,
-      password: passwordRef.current?.value,
-      confirmPassword: confirmPasswordRef.current?.value,
-    };
-
-    try {
-      const res = await fetch("api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      if (res.ok) {
-        router.push("/login");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const res = await fetch("api/register", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
+    //   if (res.ok) {
+    //     router.push("/login");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
