@@ -9,9 +9,9 @@ interface User {
   badgeNumber: string;
 }
 
-export const getUserByEmail = async (email: string): Promise<User | null> => {
+export const getUserByEmail = async (badgeNumber: string): Promise<User | null> => {
   try {
-    const user = await db.user.findUnique({ where: { email } });
+    const user = await db.user.findUnique({ where: { badgeNumber } });
     return user;
   } catch {
     return null;

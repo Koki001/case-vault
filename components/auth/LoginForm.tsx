@@ -23,8 +23,7 @@ export const LoginForm = () => {
       });
 
       if (res) {
-        console.log(res, "DEMO MICHAEL");
-        router.push("/dashboard");
+        console.log("Logged in as Demo Smith")
       }
     } catch (error) {
       console.log(error);
@@ -43,8 +42,7 @@ export const LoginForm = () => {
       });
 
       if (res) {
-        console.log(res, "DEMO EMILY");
-        // router.push("/dashboard");
+        console.log("Logged in as Demo Davis");
       }
     } catch (error) {
       console.log(error);
@@ -64,8 +62,7 @@ export const LoginForm = () => {
       });
 
       if (res) {
-        console.log(res, "REGULAR");
-        router.push("/dashboard");
+
       }
     } catch (error) {
       console.log(error);
@@ -79,8 +76,8 @@ export const LoginForm = () => {
           inputRef={emailRef}
           id="email"
           name="email"
-          type="email"
-          label="Email"
+          type="text"
+          label="Badge Number"
           fullWidth
           required
         />

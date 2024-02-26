@@ -4,8 +4,6 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Header from "@/components/header/Header";
-import { Suspense } from "react";
-import Loader from "@/components/loader/Loader";
 import { auth } from "../auth";
 
 const inter = Inter({ subsets: ["latin"] });
