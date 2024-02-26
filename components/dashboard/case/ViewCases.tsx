@@ -125,8 +125,6 @@ const ViewCases = ({ caseFilters }: Props) => {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
     };
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
@@ -147,13 +145,13 @@ const ViewCases = ({ caseFilters }: Props) => {
                   <TableHead>
                     <StyledTableRow>
                       <StyledTableCell sx={{ minWidth: "50px" }} />
-                      <StyledTableCell sx={{ minWidth: "95px" }}>
+                      <StyledTableCell sx={{ minWidth: "90px" }}>
                         Case No
                       </StyledTableCell>
-                      <StyledTableCell sx={{ minWidth: "230px" }}>
+                      <StyledTableCell sx={{ minWidth: "100px" }}>
                         Case Unique ID
                       </StyledTableCell>
-                      <StyledTableCell sx={{ minWidth: "180px" }}>
+                      <StyledTableCell sx={{ minWidth: "150px" }}>
                         Case Type
                       </StyledTableCell>
                       <StyledTableCell />
@@ -163,7 +161,7 @@ const ViewCases = ({ caseFilters }: Props) => {
                       <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
                         Title / Description
                       </StyledTableCell>
-                      <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
+                      <StyledTableCell align="right" sx={{ minWidth: "120px" }}>
                         Created At
                       </StyledTableCell>
                     </StyledTableRow>

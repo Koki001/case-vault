@@ -140,7 +140,7 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                   <TableHead>
                     <TableRow>
-                      <StyledTableCell>Case ID</StyledTableCell>
+                      <StyledTableCell sx={{maxWidth: "100px"}}>Case ID</StyledTableCell>
                       {/* <StyledTableCell align="right">Description</StyledTableCell> */}
                       <StyledTableCell align="right">
                         Location Found
@@ -174,7 +174,16 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
                               handleEvidenceDetails(evidence[index])
                             }
                           >
-                            <StyledTableCell component="th" scope="row">
+                            <StyledTableCell
+                              sx={{
+                                maxWidth: "300px",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                              component="th"
+                              scope="row"
+                            >
                               {item.caseId}
                             </StyledTableCell>
                             <StyledTableCell

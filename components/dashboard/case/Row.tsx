@@ -61,7 +61,7 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
           >
             {row.caseNumber}
           </StyledTableCell>
-          <StyledTableCell component="th" scope="row">
+          <StyledTableCell sx={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}} component="th" scope="row">
             {row.id}
           </StyledTableCell>
           <StyledTableCell component="th" scope="row">
