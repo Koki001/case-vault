@@ -5,7 +5,7 @@ import {
   apiAuthPrefix,
   authRoutes,
   publicRoutes,
-  apiRoutes
+  apiRoutes,
 } from "@/routes";
 
 const { auth } = NextAuth(authConfig);
@@ -29,16 +29,7 @@ export default auth((req) => {
   }
 
   if (!isLoggedIn && !isAuthRoute) {
-    let callbackUrl = nextUrl.pathname;
-    if (nextUrl.search) {
-      callbackUrl += nextUrl.search;
-    }
-
-    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-
-    return Response.redirect(
-      new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
-    );
+    return Response.redirect(new URL("/login", nextUrl));
   }
 
   return;
