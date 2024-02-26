@@ -6,23 +6,28 @@ import { useRef } from "react";
 
 import s from "./styles.module.css";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "../../store/authSlice";
 
 export const LoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const setLoading = useAuthStore((state) => state.setLoading);
+  const loading = useAuthStore((state) => state.loading);
 
   const handleDemoMichael = async () => {
     const email = "msmith@mail.com";
     const password = "123123";
     try {
+      setLoading(true);
       const res = await signIn("badge-login", {
         email,
         password,
         redirect: true,
       });
-
+      setLoading(false);
       if (res) {
+        setLoading(false);
         console.log(res, "DEMO MICHAEL");
         // router.push("/dashboard");
       }
@@ -36,13 +41,15 @@ export const LoginForm = () => {
     const password = "123123";
 
     try {
+      setLoading(true);
       const res = await signIn("badge-login", {
         email,
         password,
         redirect: true,
       });
-
+      setLoading(false);
       if (res) {
+        setLoading(false);
         console.log(res, "DEMO EMILY");
         // router.push("/dashboard");
       }
@@ -57,13 +64,15 @@ export const LoginForm = () => {
     const password = passwordRef.current?.value;
 
     try {
+      setLoading(true);
       const res = await signIn("badge-login", {
         email,
         password,
         redirect: true,
       });
-
+      setLoading(false);
       if (res) {
+        setLoading(false);
         console.log(res, "REGULAR");
         // router.push("/dashboard");
       }
@@ -96,13 +105,28 @@ export const LoginForm = () => {
           required
         />
       </div>
-      <Button type="submit" variant="contained" color="primary">
+      <Button
+        disabled={loading}
+        type="submit"
+        variant="contained"
+        color="primary"
+      >
         Log In
       </Button>
-      <Button onClick={handleDemoMichael} variant="contained" type="button">
+      <Button
+        disabled={loading}
+        onClick={handleDemoMichael}
+        variant="contained"
+        type="button"
+      >
         Log in as Michael Smith
       </Button>
-      <Button onClick={handleDemoEmily} variant="contained" type="button">
+      <Button
+        disabled={loading}
+        onClick={handleDemoEmily}
+        variant="contained"
+        type="button"
+      >
         Log in as Emily Davis
       </Button>
     </form>

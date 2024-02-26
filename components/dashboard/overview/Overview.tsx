@@ -1,48 +1,78 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+"use client";
 
-import { rows } from "@/data/staticOverview";
+import {
+  BarChart,
+  Bar,
+  Rectangle,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 import s from "./styles.module.css";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useState } from "react";
+
+import { dataset } from "@/data/staticOverview";
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className={s.customTooltip}>
+        <p className="label">{`${payload[0].value} incidents`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 const Overview = () => {
+
+  const [townOptions, setTownOptions] = useState("burlington");
+  console.log("lol");
   return (
     <div className={s.overviewContainer}>
-      <h2>Overview</h2>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell align="right">Description</TableCell>
-              <TableCell align="right">Evidence&nbsp;(#)</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Completed</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.id}
-                </TableCell>
-                <TableCell align="right">{row.description}</TableCell>
-                <TableCell align="right">{row.evidence}</TableCell>
-                <TableCell align="right">{row.date}</TableCell>
-                <TableCell align="right">{row.complete}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <div className={s.overviewContainerTasks}>
+        <h2>List of tasks that need to be completed</h2>
+      </div>
+      <div className={s.overviewCrimeStats}>
+        <h2>Number of incidents by jursidiction</h2>
+        <div className={s.overviewCrimeStatsOptions}>
+          <ToggleButtonGroup
+            value={townOptions}
+            exclusive
+            onChange={(_, newValue) => setTownOptions(newValue)}
+            aria-label="text alignment"
+          >
+            <ToggleButton value="burlington" aria-label="Burlington">
+              Burlington
+            </ToggleButton>
+            <ToggleButton value="oakville" aria-label="Oakville">
+              Oakville
+            </ToggleButton>
+            <ToggleButton value="milton" aria-label="Milton">
+              Milton
+            </ToggleButton>
+            <ToggleButton value="haltonHills" aria-label="Halton Hills">
+              Halton Hills
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </div>
+        <div className={s.overviewCrimeStatChart}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart width={730} height={250} data={dataset}>
+              <XAxis dataKey="type" />
+              <YAxis />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey={townOptions} fill="#8884d8" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
     </div>
   );
 };

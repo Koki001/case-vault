@@ -253,3 +253,10 @@ h5 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+footer {
+  height: 100px;
+  width: 100%;
+  border: 2px solid red;
+  background-color: yellow;
+  margin-top: 50px;
+}

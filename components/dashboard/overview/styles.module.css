@@ -1,8 +1,40 @@
 .overviewContainer {
+  display: block !important;
+  width: 100%;
+  padding: 20px;
+  max-width: 2000px;
+  margin-bottom: auto;
+  overflow: auto;
+  max-height: calc(100dvh - 180px);
+}
+.overviewCrimeStats {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  max-width: 1500px;
+  align-items: center;
+}
+
+.overviewCrimeStats .overviewCrimeStatsOptions {
+  margin: 20px 0 100px 0;
+}
+.overviewContainer .customTooltip {
+  background-color: white;
+  opacity: 0.8;
+  padding: 10px;
+  border-radius: 5px;
+}
+.overviewCrimeStatChart {
+  height: 450px;
+  max-width: 1400px;
+  width: 90%;
+}
+.overviewContainerTasks {
+  height: 800px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  margin: 50px 0;
 }

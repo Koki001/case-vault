@@ -30,6 +30,7 @@ export default async function RootLayout({
           <Header />
           <Sidebar />
           {children}
+          {/* <footer>some footer</footer> */}
         </SessionProvider>
       </body>
     </html>
