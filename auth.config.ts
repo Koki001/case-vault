@@ -44,7 +44,7 @@ export const authConfig = {
       const redirectAlreadyOccurred = nextUrl.pathname === "/deviceError";
       if (!redirectAlreadyOccurred) {
         const { device } = userAgent({ headers });
-        if (device.type === "mobile" && isOnDashboard) {
+        if (device.type === "mobile") {
           return Response.redirect(new URL("/deviceError", nextUrl));
         }
         if (isOnDashboard) {
