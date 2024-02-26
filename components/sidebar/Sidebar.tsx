@@ -44,7 +44,7 @@ const Sidebar = () => {
     newView: string
   ) => {
     if (newView !== null) {
-      router.push(`?view=${newView}`);
+      router.push(`/dashboard?view=${newView}`);
     }
   };
 

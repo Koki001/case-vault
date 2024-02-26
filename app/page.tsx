@@ -17,7 +17,7 @@ const Home = () => {
         time, feel free to go to the login screen and explore the site!
       </p>
       <Link href={"/login"}>
-        <Button variant="outlined">Login</Button>
+        <Button variant="outlined">Get started</Button>
       </Link>
     </main>
   );
