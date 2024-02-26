@@ -41,6 +41,7 @@ export const {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log("auth credentials")
         const { email, password } = credentials;
         const user = await getUserByEmail(email as any);
         console.log(user);

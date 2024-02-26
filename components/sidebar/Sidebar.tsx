@@ -7,6 +7,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import s from "./styles.module.css";
 import { Button } from "@mui/material";
+import { Suspense } from "react";
 
 const sidebarStyleObj = {
   "&.MuiButtonBase-root": {
@@ -49,83 +50,103 @@ const Sidebar = () => {
 
   if (status === "authenticated" && email) {
     return (
-      <div className={s.sidebarContainer}>
-        <div className={s.sidebarUserInfo}>
-          <h3>
-            <span>{firstName}</span>
-            <span>{lastName}</span>
-          </h3>
-          <h4>#{badgeNumber}</h4>
+      <Suspense>
+        <div className={s.sidebarContainer}>
+          <div className={s.sidebarUserInfo}>
+            <h3>
+              <span>{firstName}</span>
+              <span>{lastName}</span>
+            </h3>
+            <h4>#{badgeNumber}</h4>
+          </div>
+          <ul className={s.sidebarContent}>
+            <ToggleButtonGroup
+              color="primary"
+              orientation="vertical"
+              value={currentView}
+              exclusive
+              onChange={handleChange}
+              aria-label="Platform"
+            >
+              <li>
+                <ToggleButton
+                  disableRipple
+                  sx={sidebarStyleObj}
+                  value="overview"
+                >
+                  overview
+                </ToggleButton>
+              </li>
+              <li>
+                <ToggleButton disableRipple sx={sidebarStyleObj} value="case">
+                  cases
+                </ToggleButton>
+              </li>
+              <li>
+                <ToggleButton
+                  disableRipple
+                  sx={sidebarStyleObj}
+                  value="evidence"
+                >
+                  evidence
+                </ToggleButton>
+              </li>
+              <li>
+                <ToggleButton
+                  disableRipple
+                  sx={sidebarStyleObj}
+                  value="storage"
+                >
+                  evidence storage
+                </ToggleButton>
+              </li>
+              <li>
+                <ToggleButton
+                  disableRipple
+                  sx={sidebarStyleObj}
+                  value="tracking"
+                >
+                  tracking
+                </ToggleButton>
+              </li>
+              <li>
+                <ToggleButton
+                  disableRipple
+                  sx={sidebarStyleObj}
+                  value="documentation"
+                >
+                  support
+                </ToggleButton>
+              </li>
+            </ToggleButtonGroup>
+          </ul>
+          <div className={s.sidebarLogout}>
+            <Button onClick={() => signOut()} variant="contained" color="error">
+              Sign Out
+            </Button>
+          </div>
         </div>
-        <ul className={s.sidebarContent}>
-          <ToggleButtonGroup
-            color="primary"
-            orientation="vertical"
-            value={currentView}
-            exclusive
-            onChange={handleChange}
-            aria-label="Platform"
-          >
-            <li>
-              <ToggleButton disableRipple sx={sidebarStyleObj} value="overview">
-                overview
-              </ToggleButton>
-            </li>
-            <li>
-              <ToggleButton disableRipple sx={sidebarStyleObj} value="case">
-                cases
-              </ToggleButton>
-            </li>
-            <li>
-              <ToggleButton disableRipple sx={sidebarStyleObj} value="evidence">
-                evidence
-              </ToggleButton>
-            </li>
-            <li>
-              <ToggleButton disableRipple sx={sidebarStyleObj} value="storage">
-                evidence storage
-              </ToggleButton>
-            </li>
-            <li>
-              <ToggleButton disableRipple sx={sidebarStyleObj} value="tracking">
-                tracking
-              </ToggleButton>
-            </li>
-            <li>
-              <ToggleButton
-                disableRipple
-                sx={sidebarStyleObj}
-                value="documentation"
-              >
-                support
-              </ToggleButton>
-            </li>
-          </ToggleButtonGroup>
-        </ul>
-        <div className={s.sidebarLogout}>
-          <Button onClick={() => signOut()} variant="contained" color="error">
-            Sign Out
-          </Button>
-        </div>
-      </div>
+      </Suspense>
     );
   } else {
     return (
-      <div className={`${s.sidebarContainer} ${s.sidebarContainerFiller}`}>
-        <h3>Built with:</h3>
-        <ul>
-          <li>Next.js 14</li>
-          <li>Node.js</li>
-          <li>Amazon S3</li>
-          <li>TypeScript</li>
-          <li>NextAuth</li>
-          <li>MongoDB</li>
-          <li>Prisma</li>
-          <li>Zustand</li>
-          <li>Material UI</li>
-          <li>CSS Modules</li>
-        </ul>
-      </div>
+      <Suspense>
+        <div className={`${s.sidebarContainer} ${s.sidebarContainerFiller}`}>
+          <h3>Built with:</h3>
+          <ul>
+            <li>Next.js 14</li>
+            <li>Node.js</li>
+            <li>Amazon S3</li>
+            <li>TypeScript</li>
+            <li>NextAuth</li>
+            <li>MongoDB</li>
+            <li>Prisma</li>
+            <li>Zustand</li>
+            <li>Material UI</li>
+            <li>CSS Modules</li>
+          </ul>
+        </div>
+      </Suspense>
     );
   }
 };

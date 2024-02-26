@@ -65,7 +65,7 @@ export const LoginForm = () => {
 
       if (res) {
         console.log(res, "REGULAR");
-        router.push("/dashboard");
+        // router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);

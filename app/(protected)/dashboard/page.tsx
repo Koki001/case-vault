@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 import { useUserStore } from "@/store/userSlice";
 
@@ -59,15 +59,17 @@ const DashboardPage = () => {
 
   // if (status === "authenticatedd" && userEmail) {
   return (
-    <div className={s.viewContainer}>
-      {status === "authenticated" && userEmail ? (
-        currentView && componentObj[currentView as keyof typeof componentObj]
-      ) : (
-        <div>
-          <Loader />
-        </div>
-      )}
-    </div>
+    <Suspense>
+      <div className={s.viewContainer}>
+        {status === "authenticated" && userEmail ? (
+          currentView && componentObj[currentView as keyof typeof componentObj]
+        ) : (
+          <div>
+            <Loader />
+          </div>
+        )}
+      </div>
+    </Suspense>
   );
   // } else return ;
 };

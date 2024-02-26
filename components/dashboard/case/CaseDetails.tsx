@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Loader from "@/components/loader/Loader";
 import { useCaseStore } from "@/store/caseSlice";
 
@@ -101,7 +101,6 @@ const CaseDetails = () => {
         const { fileName, fileContents } = await response.json();
         setFullReport(fileContents);
         console.log(fileName);
-    
       } catch (error) {
         console.error("Error loading file:", error);
       }
@@ -136,190 +135,192 @@ const CaseDetails = () => {
 
   if (caseDetails && caseIdParams === caseDetails.id) {
     return (
-      <div className={s.caseDetailsContainer}>
-        <div className={s.caseDetailsHeading}>
-          <Button
-            variant="contained"
-            color="error"
-            onClick={() => router.back()}
-          >
-            Back
-          </Button>
-          <h2>{caseDetails.description}</h2>
-          <p>Case No: {caseDetails.caseNumber}</p>
-        </div>
-        <ul className={s.caseDetailsHeadingList}>
-          <li>Case ID: {caseDetails.id}</li>
-          <li>{formatDate(caseDetails.createdAt)}</li>
-          <li>{caseDetails.type}</li>
-          <li className={s.leadInvestigatorListItem}>
-            Lead Investigator(s):{" "}
-            {caseDetails.officersInCharge.map((item, index) => {
-              return <p key={"officerA" + index}>{item.name}</p>;
-            })}{" "}
-          </li>
-        </ul>
-        <Button
-          variant="outlined"
-          sx={{ margin: "30px 0", width: "100%" }}
-          disabled={fullReport !== ""}
-          onClick={handleReadFullReport}
-        >
-          Read full report
-        </Button>
-        {viewReport && fullReport && (
-          // <p className={s.caseDetailsReportParagraph}>{fullReport}</p>
-
-          <div className={s.caseDetailsReportParagraph}>
-            <div>{parse(fullReport)}</div>
+      <Suspense>
+        <div className={s.caseDetailsContainer}>
+          <div className={s.caseDetailsHeading}>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => router.back()}
+            >
+              Back
+            </Button>
+            <h2>{caseDetails.description}</h2>
+            <p>Case No: {caseDetails.caseNumber}</p>
           </div>
-        )}
-        <ul className={s.extraInfoUl}>
-          {caseDetails.victims.length > 0 && (
-            <li className={s.victimsListItem}>
-              Victims:{" "}
-              <div className={s.victimsInternal}>
-                {caseDetails.victims.map((item, index) => {
-                  return (
-                    <TextField
-                      defaultValue={item.name}
-                      key={"victimA" + index}
-                      id={"victim" + index}
-                      placeholder={item.name}
-                      variant="standard"
-                      sx={{ margin: "10px 20px 20px 0", width: "160px" }}
-                      disabled
-                    />
-                  );
-                })}
-              </div>
+          <ul className={s.caseDetailsHeadingList}>
+            <li>Case ID: {caseDetails.id}</li>
+            <li>{formatDate(caseDetails.createdAt)}</li>
+            <li>{caseDetails.type}</li>
+            <li className={s.leadInvestigatorListItem}>
+              Lead Investigator(s):{" "}
+              {caseDetails.officersInCharge.map((item, index) => {
+                return <p key={"officerA" + index}>{item.name}</p>;
+              })}{" "}
             </li>
+          </ul>
+          <Button
+            variant="outlined"
+            sx={{ margin: "30px 0", width: "100%" }}
+            disabled={fullReport !== ""}
+            onClick={handleReadFullReport}
+          >
+            Read full report
+          </Button>
+          {viewReport && fullReport && (
+            // <p className={s.caseDetailsReportParagraph}>{fullReport}</p>
+
+            <div className={s.caseDetailsReportParagraph}>
+              <div>{parse(fullReport)}</div>
+            </div>
           )}
-          {caseDetails.suspects.length > 0 && (
-            <li className={s.suspectsListItem}>
-              Suspects:{" "}
-              <div className={s.suspectsInternal}>
-                {caseDetails.suspects.map((item, index) => {
+          <ul className={s.extraInfoUl}>
+            {caseDetails.victims.length > 0 && (
+              <li className={s.victimsListItem}>
+                Victims:{" "}
+                <div className={s.victimsInternal}>
+                  {caseDetails.victims.map((item, index) => {
+                    return (
+                      <TextField
+                        defaultValue={item.name}
+                        key={"victimA" + index}
+                        id={"victim" + index}
+                        placeholder={item.name}
+                        variant="standard"
+                        sx={{ margin: "10px 20px 20px 0", width: "160px" }}
+                        disabled
+                      />
+                    );
+                  })}
+                </div>
+              </li>
+            )}
+            {caseDetails.suspects.length > 0 && (
+              <li className={s.suspectsListItem}>
+                Suspects:{" "}
+                <div className={s.suspectsInternal}>
+                  {caseDetails.suspects.map((item, index) => {
+                    return (
+                      <TextField
+                        defaultValue={item.name}
+                        key={"suspectA" + index}
+                        id={"suspect" + index}
+                        placeholder={item.name}
+                        variant="standard"
+                        sx={{ margin: "10px 20px 20px 0", width: "160px" }}
+                        disabled
+                      />
+                    );
+                  })}
+                </div>
+              </li>
+            )}
+            {caseDetails.witnesses.length > 0 && (
+              <li className={s.witnessesListItem}>
+                Witnesses:{" "}
+                <div className={s.witnessesInternal}>
+                  {caseDetails.witnesses.map((item, index) => {
+                    return (
+                      <TextField
+                        defaultValue={item.name}
+                        key={"witnessA" + index}
+                        id={"witness" + index}
+                        placeholder={item.name}
+                        variant="standard"
+                        sx={{ margin: "10px 20px 20px 0", width: "160px" }}
+                        disabled
+                      />
+                    );
+                  })}
+                </div>
+              </li>
+            )}
+          </ul>
+          <Button variant="contained" onClick={() => setOpen(true)}>
+            Add Evidence
+          </Button>
+          <Modal
+            open={open}
+            onClose={() => setOpen(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={styleUpload}>
+              <UploadEvidence propId={caseDetails.id} />
+            </Box>
+          </Modal>
+          {caseDetails.evidence.length > 0 && (
+            <div className={s.evidenceListItem}>
+              <h3>Case Evidence Below</h3>
+              <div className={s.evidenceInternal}>
+                {caseDetails.evidence.map((item, index) => {
                   return (
-                    <TextField
-                      defaultValue={item.name}
-                      key={"suspectA" + index}
-                      id={"suspect" + index}
-                      placeholder={item.name}
-                      variant="standard"
-                      sx={{ margin: "10px 20px 20px 0", width: "160px" }}
-                      disabled
-                    />
-                  );
-                })}
-              </div>
-            </li>
-          )}
-          {caseDetails.witnesses.length > 0 && (
-            <li className={s.witnessesListItem}>
-              Witnesses:{" "}
-              <div className={s.witnessesInternal}>
-                {caseDetails.witnesses.map((item, index) => {
-                  return (
-                    <TextField
-                      defaultValue={item.name}
-                      key={"witnessA" + index}
-                      id={"witness" + index}
-                      placeholder={item.name}
-                      variant="standard"
-                      sx={{ margin: "10px 20px 20px 0", width: "160px" }}
-                      disabled
-                    />
-                  );
-                })}
-              </div>
-            </li>
-          )}
-        </ul>
-        <Button variant="contained" onClick={() => setOpen(true)}>
-          Add Evidence
-        </Button>
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={styleUpload}>
-            <UploadEvidence propId={caseDetails.id} />
-          </Box>
-        </Modal>
-        {caseDetails.evidence.length > 0 && (
-          <div className={s.evidenceListItem}>
-            <h3>Case Evidence Below</h3>
-            <div className={s.evidenceInternal}>
-              {caseDetails.evidence.map((item, index) => {
-                return (
-                  <div className={s.evidenceHolder} key={"evidence" + index}>
-                    <div className={s.evidenceHolderTop}>
-                      <div>
-                        <p>Evidence ID: {item.id}</p>
-                        <p>Date Added: {formatDate(item.addedOn)}</p>
+                    <div className={s.evidenceHolder} key={"evidence" + index}>
+                      <div className={s.evidenceHolderTop}>
+                        <div>
+                          <p>Evidence ID: {item.id}</p>
+                          <p>Date Added: {formatDate(item.addedOn)}</p>
+                        </div>
+                        <div>
+                          <p>Type: {item.type} </p>
+                          <p>Status: {item.status}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p>Type: {item.type} </p>
-                        <p>Status: {item.status}</p>
-                      </div>
-                    </div>
-                    <div className={s.evidenceHolderImage}>
-                      {item.photo && (
-                        <Image
-                          src={item.photo}
-                          alt={item.description}
-                          height={400}
-                          width={400}
-                          onClick={() => setOpenIndex(index)}
-                        />
-                      )}
-                      <div>
-                        <p>Found At: {item.locationFound}</p>
-                        <p className={s.evidenceHolderDescription}>
-                          {item.description}{" "}
-                        </p>
-                      </div>
-                    </div>
-                    <Modal
-                      open={openIndex === index}
-                      onClose={() => setOpenIndex(null)}
-                      aria-labelledby="modal-modal-title"
-                      aria-describedby="modal-modal-description"
-                    >
-                      <Box sx={style}>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          sx={{
-                            position: "absolute",
-                            top: 0,
-                            right: 0,
-                            zIndex: 100,
-                          }}
-                          onClick={() => setOpenIndex(null)}
-                        >
-                          EXIT
-                        </Button>
+                      <div className={s.evidenceHolderImage}>
                         {item.photo && (
                           <Image
                             src={item.photo}
                             alt={item.description}
-                            layout="fill"
-                            objectFit="contain"
+                            height={400}
+                            width={400}
+                            onClick={() => setOpenIndex(index)}
                           />
                         )}
-                      </Box>
-                    </Modal>
-                  </div>
-                );
-              })}
+                        <div>
+                          <p>Found At: {item.locationFound}</p>
+                          <p className={s.evidenceHolderDescription}>
+                            {item.description}{" "}
+                          </p>
+                        </div>
+                      </div>
+                      <Modal
+                        open={openIndex === index}
+                        onClose={() => setOpenIndex(null)}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Button
+                            variant="contained"
+                            color="error"
+                            sx={{
+                              position: "absolute",
+                              top: 0,
+                              right: 0,
+                              zIndex: 100,
+                            }}
+                            onClick={() => setOpenIndex(null)}
+                          >
+                            EXIT
+                          </Button>
+                          {item.photo && (
+                            <Image
+                              src={item.photo}
+                              alt={item.description}
+                              layout="fill"
+                              objectFit="contain"
+                            />
+                          )}
+                        </Box>
+                      </Modal>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </Suspense>
     );
   } else {
     return <Loader />;

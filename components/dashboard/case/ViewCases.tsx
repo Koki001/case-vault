@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import Loader from "@/components/loader/Loader";
 import { useCaseStore } from "@/store/caseSlice";
@@ -12,12 +12,11 @@ import Paper from "@mui/material/Paper";
 import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
 import TableContainer from "@mui/material/TableContainer";
-import { StyledTableCell, StyledTableRow } from "@/muiStyles/mui"
+import { StyledTableCell, StyledTableRow } from "@/muiStyles/mui";
 
 import s from "./styles.module.css";
 import { useSearchParams } from "next/navigation";
 import CaseDetails from "./CaseDetails";
-
 
 interface CaseData {
   caseType: string;
@@ -132,63 +131,67 @@ const ViewCases = ({ caseFilters }: Props) => {
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
   if (isCaseDetails) {
-    return <CaseDetails />;
+    return (
+      <Suspense>
+        <CaseDetails />
+      </Suspense>
+    );
   } else {
     return (
-      <div className={s.viewCasesContainer}>
-        {cases.length > 0 && !update ? (
-          <div className={s.casesTable}>
-            <TableContainer component={Paper}>
-              <Table aria-label="collapsible table">
-                <TableHead>
-                  <StyledTableRow>
-                    <StyledTableCell sx={{ minWidth: "50px" }} />
-                    <StyledTableCell sx={{ minWidth: "95px" }}>
-                      Case No
-                    </StyledTableCell>
-                    <StyledTableCell sx={{ minWidth: "230px" }}>
-                      Case Unique ID
-                    </StyledTableCell>
-                    <StyledTableCell sx={{ minWidth: "180px" }}>
-                      Case Type
-                    </StyledTableCell>
-                    <StyledTableCell />
-                    <StyledTableCell align="right" sx={{ minWidth: "80px" }}>
-                      Status
-                    </StyledTableCell>
-                    <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
-                      Title / Description
-                    </StyledTableCell>
-                    <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
-                      Created At
-                    </StyledTableCell>
-                  </StyledTableRow>
-                </TableHead>
-                <TableBody>
-                  {cases.map((item, index) => (
-                    <Row
-                      key={index}
-                      row={item}
-                      formatDate={formatDate}
-                      cases={cases}
-                      caseIndex={index}
-                    />
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        ) : update ? (
-          <Loader />
-        ) : (
-          !update &&
-          cases.length === 0 && (
-            <div className="noResultsGlobal">
-              {/* <h2>NO RESULTS</h2> */}
+      <Suspense>
+        <div className={s.viewCasesContainer}>
+          {cases.length > 0 && !update ? (
+            <div className={s.casesTable}>
+              <TableContainer component={Paper}>
+                <Table aria-label="collapsible table">
+                  <TableHead>
+                    <StyledTableRow>
+                      <StyledTableCell sx={{ minWidth: "50px" }} />
+                      <StyledTableCell sx={{ minWidth: "95px" }}>
+                        Case No
+                      </StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: "230px" }}>
+                        Case Unique ID
+                      </StyledTableCell>
+                      <StyledTableCell sx={{ minWidth: "180px" }}>
+                        Case Type
+                      </StyledTableCell>
+                      <StyledTableCell />
+                      <StyledTableCell align="right" sx={{ minWidth: "80px" }}>
+                        Status
+                      </StyledTableCell>
+                      <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
+                        Title / Description
+                      </StyledTableCell>
+                      <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
+                        Created At
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  </TableHead>
+                  <TableBody>
+                    {cases.map((item, index) => (
+                      <Row
+                        key={index}
+                        row={item}
+                        formatDate={formatDate}
+                        cases={cases}
+                        caseIndex={index}
+                      />
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </div>
-          )
-        )}
-      </div>
+          ) : update ? (
+            <Loader />
+          ) : (
+            !update &&
+            cases.length === 0 && (
+              <div className="noResultsGlobal">{/* <h2>NO RESULTS</h2> */}</div>
+            )
+          )}
+        </div>
+      </Suspense>
     );
   }
 };

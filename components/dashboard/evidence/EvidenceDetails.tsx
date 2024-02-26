@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 // Import necessary dependencies
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Loader from "@/components/loader/Loader";
 import { useEvidenceStore } from "@/store/evidenceSlice"; // Assuming you have an evidence store
 import s from "./styles.module.css";
@@ -89,45 +89,47 @@ const EvidenceDetails = () => {
 
   // Render the component
   return (
-    <div className={s.evidenceDetailsContainer}>
-      <Button variant="contained" color="error" onClick={() => router.back()}>
-        Back
-      </Button>
-      <div className={s.evidenceDetailsHolder}>
-        {evidenceDetails ? (
-          <div className={s.evidenceHolder}>
-            <div className={s.evidenceHolderTop}>
-              <div>
-                <p>Evidence ID: {evidenceDetails.id}</p>
-                <p>Date Added: {formatDate(evidenceDetails.addedOn)}</p>
+    <Suspense>
+      <div className={s.evidenceDetailsContainer}>
+        <Button variant="contained" color="error" onClick={() => router.back()}>
+          Back
+        </Button>
+        <div className={s.evidenceDetailsHolder}>
+          {evidenceDetails ? (
+            <div className={s.evidenceHolder}>
+              <div className={s.evidenceHolderTop}>
+                <div>
+                  <p>Evidence ID: {evidenceDetails.id}</p>
+                  <p>Date Added: {formatDate(evidenceDetails.addedOn)}</p>
+                </div>
+                <div>
+                  <p>Type: {evidenceDetails.type} </p>
+                  <p>Status: {evidenceDetails.status}</p>
+                </div>
               </div>
-              <div>
-                <p>Type: {evidenceDetails.type} </p>
-                <p>Status: {evidenceDetails.status}</p>
+              <div className={s.evidenceHolderImage}>
+                {evidenceDetails.photo && (
+                  <Image
+                    src={evidenceDetails.photo}
+                    alt={evidenceDetails.description}
+                    height={600}
+                    width={700}
+                  />
+                )}
+                <div>
+                  <p>Found At: {evidenceDetails.locationFound}</p>
+                  <p className={s.evidenceHolderDescription}>
+                    {evidenceDetails.description}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className={s.evidenceHolderImage}>
-              {evidenceDetails.photo && (
-                <Image
-                  src={evidenceDetails.photo}
-                  alt={evidenceDetails.description}
-                  height={600}
-                  width={700}
-                />
-              )}
-              <div>
-                <p>Found At: {evidenceDetails.locationFound}</p>
-                <p className={s.evidenceHolderDescription}>
-                  {evidenceDetails.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          update && <Loader />
-        )}
+          ) : (
+            update && <Loader />
+          )}
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useEvidenceStore } from "@/store/evidenceSlice";
 
 import s from "./styles.module.css";
@@ -125,105 +125,117 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
     router.push(`?view=${currentView}&evidenceId=${evidence.id}`);
   };
   if (isEvidenceDetails) {
-    return <EvidenceDetails />;
+    return (
+      <Suspense>
+        <EvidenceDetails />
+      </Suspense>
+    );
   } else {
     return (
-      <div className={s.evidenceViewContainer}>
-        {evidence.length > 0 && !update ? (
-          <div className={s.evidenceTable}>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                  <TableRow>
-                    <StyledTableCell>Case ID</StyledTableCell>
-                    {/* <StyledTableCell align="right">Description</StyledTableCell> */}
-                    <StyledTableCell align="right">
-                      Location Found
-                    </StyledTableCell>
-                    <StyledTableCell align="right">Type</StyledTableCell>
-                    <StyledTableCell align="right">Status</StyledTableCell>
-                    <StyledTableCell align="right">Photo</StyledTableCell>
-                    <StyledTableCell align="right">Date Found</StyledTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {evidence.length > 0 &&
-                    evidence.map((item, index) => {
-                      let imageURL;
-                      if (item.photo !== "IMAGE HERE") {
-                        imageURL = item.photo;
-                      }
-                      const addedOnDate = new Date(item.addedOn);
-                      const formattedAddedOn = `${addedOnDate.getFullYear()}-${(
-                        "0" +
-                        (addedOnDate.getMonth() + 1)
-                      ).slice(-2)}-${("0" + addedOnDate.getDate()).slice(-2)}`;
-                      return (
-                        <StyledTableRowEvidence
-                          key={index}
-                          onClick={() => handleEvidenceDetails(evidence[index])}
-                        >
-                          <StyledTableCell component="th" scope="row">
-                            {item.caseId}
-                          </StyledTableCell>
-                          <StyledTableCell
-                            sx={{
-                              maxWidth: "300px",
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            }}
-                            align="right"
+      <Suspense>
+        <div className={s.evidenceViewContainer}>
+          {evidence.length > 0 && !update ? (
+            <div className={s.evidenceTable}>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                  <TableHead>
+                    <TableRow>
+                      <StyledTableCell>Case ID</StyledTableCell>
+                      {/* <StyledTableCell align="right">Description</StyledTableCell> */}
+                      <StyledTableCell align="right">
+                        Location Found
+                      </StyledTableCell>
+                      <StyledTableCell align="right">Type</StyledTableCell>
+                      <StyledTableCell align="right">Status</StyledTableCell>
+                      <StyledTableCell align="right">Photo</StyledTableCell>
+                      <StyledTableCell align="right">
+                        Date Found
+                      </StyledTableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {evidence.length > 0 &&
+                      evidence.map((item, index) => {
+                        let imageURL;
+                        if (item.photo !== "IMAGE HERE") {
+                          imageURL = item.photo;
+                        }
+                        const addedOnDate = new Date(item.addedOn);
+                        const formattedAddedOn = `${addedOnDate.getFullYear()}-${(
+                          "0" +
+                          (addedOnDate.getMonth() + 1)
+                        ).slice(-2)}-${("0" + addedOnDate.getDate()).slice(
+                          -2
+                        )}`;
+                        return (
+                          <StyledTableRowEvidence
+                            key={index}
+                            onClick={() =>
+                              handleEvidenceDetails(evidence[index])
+                            }
                           >
-                            {item.locationFound}
-                          </StyledTableCell>
-                          {/* <StyledTableCell align="right">
+                            <StyledTableCell component="th" scope="row">
+                              {item.caseId}
+                            </StyledTableCell>
+                            <StyledTableCell
+                              sx={{
+                                maxWidth: "300px",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                              align="right"
+                            >
+                              {item.locationFound}
+                            </StyledTableCell>
+                            {/* <StyledTableCell align="right">
                             {item.description}
                           </StyledTableCell> */}
-                          <StyledTableCell
-                            sx={{ minWidth: "130px" }}
-                            align="right"
-                          >
-                            {item.type}
-                          </StyledTableCell>
-                          <StyledTableCell
-                            sx={{ minWidth: "130px" }}
-                            align="right"
-                          >
-                            {item.status}
-                          </StyledTableCell>
-                          <StyledTableCell align="right">
-                            {imageURL && (
-                              <Image
-                                src={imageURL}
-                                alt="evidence photo"
-                                height={50}
-                                width={50}
-                              />
-                            )}
-                          </StyledTableCell>
-                          <StyledTableCell
-                            sx={{ minWidth: "130px" }}
-                            align="right"
-                          >
-                            {formattedAddedOn}
-                          </StyledTableCell>
-                        </StyledTableRowEvidence>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        ) : update ? (
-          <Loader />
-        ) : (
-          !update &&
-          evidence.length === 0 && (
-            <div className="noResultsGlobal">{/* <h2>NO RESULTS</h2> */}</div>
-          )
-        )}
-      </div>
+                            <StyledTableCell
+                              sx={{ minWidth: "130px" }}
+                              align="right"
+                            >
+                              {item.type}
+                            </StyledTableCell>
+                            <StyledTableCell
+                              sx={{ minWidth: "130px" }}
+                              align="right"
+                            >
+                              {item.status}
+                            </StyledTableCell>
+                            <StyledTableCell align="right">
+                              {imageURL && (
+                                <Image
+                                  src={imageURL}
+                                  alt="evidence photo"
+                                  height={50}
+                                  width={50}
+                                />
+                              )}
+                            </StyledTableCell>
+                            <StyledTableCell
+                              sx={{ minWidth: "130px" }}
+                              align="right"
+                            >
+                              {formattedAddedOn}
+                            </StyledTableCell>
+                          </StyledTableRowEvidence>
+                        );
+                      })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          ) : update ? (
+            <Loader />
+          ) : (
+            !update &&
+            evidence.length === 0 && (
+              <div className="noResultsGlobal">{/* <h2>NO RESULTS</h2> */}</div>
+            )
+          )}
+        </div>
+      </Suspense>
     );
   }
 };
