@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className={s.headerContainer}>
       <Image
-        src={"./Logos/HaltonPoliceService.svg"}
+        src={"/Logos/HaltonPoliceService.png"}
         height={100}
         width={100}
         alt="Halton Police Service"

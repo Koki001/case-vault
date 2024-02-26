@@ -30,23 +30,28 @@
 // } satisfies NextAuthConfig;
 
 import type { NextAuthConfig } from "next-auth";
+import { NextResponse, userAgent } from "next/server";
 
 export const authConfig = {
   pages: {
     signIn: "/login",
   },
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
+    authorized({ auth, request: { nextUrl, headers } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
-      console.log("isLoggedin", isLoggedIn)
-      console.log("isOnDashboard", isOnDashboard)
-      console.log("auth", auth)
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        return Response.redirect(new URL("/login", nextUrl));
-      } else if (isLoggedIn) {
-        return Response.redirect(new URL("/dashboard", nextUrl));
+      const redirectAlreadyOccurred = nextUrl.pathname === "/deviceError";
+      if (!redirectAlreadyOccurred) {
+        const { device } = userAgent({ headers }); 
+        if (device.type === "mobile" && isOnDashboard) {
+          return Response.redirect(new URL("/deviceError", nextUrl));
+        }
+        if (isOnDashboard) {
+          if (isLoggedIn) return true;
+          return Response.redirect(new URL("/login", nextUrl));
+        } else if (isLoggedIn) {
+          return Response.redirect(new URL("/dashboard", nextUrl));
+        }
       }
       return true;
     },

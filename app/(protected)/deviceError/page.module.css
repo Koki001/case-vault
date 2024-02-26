@@ -1,0 +1,18 @@
+.mobileRestrictedPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgb(136, 60, 60);
+  color: white;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -120px;
+  margin-top: -120px;
+}
+.mobileRestrictedPage h1 {
+  width: 300px;
+}
