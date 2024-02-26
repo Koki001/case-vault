@@ -38,11 +38,12 @@ export const authConfig = {
   },
   callbacks: {
     authorized({ auth, request: { nextUrl, headers } }) {
+      console.log("auth block")
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
       const redirectAlreadyOccurred = nextUrl.pathname === "/deviceError";
       if (!redirectAlreadyOccurred) {
-        const { device } = userAgent({ headers }); 
+        const { device } = userAgent({ headers });
         if (device.type === "mobile" && isOnDashboard) {
           return Response.redirect(new URL("/deviceError", nextUrl));
         }
@@ -50,6 +51,12 @@ export const authConfig = {
           if (isLoggedIn) return true;
           return Response.redirect(new URL("/login", nextUrl));
         } else if (isLoggedIn) {
+          return Response.redirect(new URL("/dashboard", nextUrl));
+        }
+      }
+      if (redirectAlreadyOccurred) {
+        const { device } = userAgent({ headers });
+        if (device.type !== "mobile" && !isOnDashboard) {
           return Response.redirect(new URL("/dashboard", nextUrl));
         }
       }
