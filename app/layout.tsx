@@ -4,7 +4,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Header from "@/components/header/Header";
-import { auth } from "../auth";
+// import { auth } from "../auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,16 +18,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
+  // const session = await auth();
   return (
-    <SessionProvider session={session}>
-      <html lang="en">
-          <body className={inter.className}>
-            <Header />
-            <Sidebar />
-            {children}
-          </body>
-      </html>
-    </SessionProvider>
+    <html lang="en">
+      <SessionProvider>
+        <body className={inter.className}>
+          <Header />
+          <Sidebar />
+          {children}
+        </body>
+      </SessionProvider>
+    </html>
   );
 }

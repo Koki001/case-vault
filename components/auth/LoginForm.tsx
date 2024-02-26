@@ -12,44 +12,44 @@ export const LoginForm = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const handleDemoMichael = async () => {
-    const email = "msmith@mail.com";
-    const password = "123123";
-    try {
-      const res = await signIn("Credentials", {
-        email,
-        password,
-        redirect: false,
-      });
+  // const handleDemoMichael = async () => {
+  //   const email = "msmith@mail.com";
+  //   const password = "123123";
+  //   try {
+  //     const res = await signIn("Credentials", {
+  //       email,
+  //       password,
+  //       redirect: false,
+  //     });
 
-      if (res) {
-        console.log(res, "DEMO MICHAEL");
-        router.push("/dashboard");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     if (res) {
+  //       console.log(res, "DEMO MICHAEL");
+  //       router.push("/dashboard");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleDemoEmily = async () => {
-    const email = "edavis@mail.com";
-    const password = "123123";
+  // const handleDemoEmily = async () => {
+  //   const email = "edavis@mail.com";
+  //   const password = "123123";
 
-    try {
-      const res = await signIn("credentials", {
-        email,
-        password,
-        redirect: true,
-      });
+  //   try {
+  //     const res = await signIn("Credentials", {
+  //       email,
+  //       password,
+  //       redirect: false,
+  //     });
 
-      if (res) {
-        console.log(res, "DEMO EMILY");
-        // router.push("/dashboard");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     if (res) {
+  //       console.log(res, "DEMO EMILY");
+  //       router.push("/dashboard");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ export const LoginForm = () => {
       const res = await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        redirect: true,
       });
 
       if (res) {
@@ -99,12 +99,12 @@ export const LoginForm = () => {
       <Button type="submit" variant="contained" color="primary">
         Log In
       </Button>
-      <Button onClick={handleDemoMichael} variant="contained" type="button">
+      {/* <Button onClick={handleDemoMichael} variant="contained" type="button">
         Log in as Michael Smith
       </Button>
       <Button onClick={handleDemoEmily} variant="contained" type="button">
         Log in as Emily Davis
-      </Button>
+      </Button> */}
     </form>
   );
 };
