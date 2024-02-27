@@ -344,7 +344,7 @@ const Navbar = () => {
     return (
       <Suspense>
         <div className={`${s.navContainer} ${s.navContainerFiller}`}>
-          <ul>
+          <ul className="wrapper">
             <li>
               <a
                 href="https://nextjs.org/"

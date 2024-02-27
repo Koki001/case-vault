@@ -93,20 +93,19 @@
   background-color: #e0e0e0;
   justify-content: center;
   align-items: flex-start;
-  flex-direction: column;
   width: 100%;
 }
 .navContainerFiller ul {
-  margin-top: 20px;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 .navContainerFiller li {
-  margin: 10px 0;
+  margin: 10px;
   font-size: 18px;
-  width: 100%;
+  width: 140px;
 }
 .navContainerFiller li * {
   width: 100%;

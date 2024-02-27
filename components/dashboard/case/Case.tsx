@@ -56,12 +56,17 @@ const Case = () => {
     <Suspense>
       <div className={s.caseContainer}>
         <div className={s.caseOptionsNav}>
+          {currentView === "viewCases" ? <h2>Case Lookup</h2> : currentView === "createCase" && <h2>Create Case</h2>}
           {currentView === "viewCases" && !isCaseDetails && (
             <>
               <p className={s.filtersNotice}>
-                Use filters below or leave empty to retrieve all records
+                Use filters below or leave empty to
+                retrieve all records
               </p>
-              <form className={s.caseSearchForm} onSubmit={handleSearchCase}>
+              <form
+                className={`${s.caseSearchForm} wrapper`}
+                onSubmit={handleSearchCase}
+              >
                 <TextField
                   id="caseNum"
                   label="Case No"

@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 import {
   StyledTableCell,
@@ -49,15 +50,21 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
             open ? `${s.styledRow} ${s.styledRowOpen}` : `${s.styledRow}`
           }
         >
-          <StyledTableCell>
-            <IconButton aria-label="expand row" size="small">
-              {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          <StyledTableCell
+            onClick={(e) => e.stopPropagation()}
+            sx={{ width: "60px" }}
+          >
+            <IconButton
+              onClick={() => handleCaseDetails(cases[caseIndex])}
+              aria-label="edit case"
+              size="small"
+            >
+              {<ModeEditIcon />}
             </IconButton>
           </StyledTableCell>
           <StyledTableCell
-            sx={{ fontWeight: "bold" }}
-            component="th"
-            scope="row"
+            align="center"
+            sx={{ fontWeight: "bold", width: "100px" }}
           >
             {row.caseNumber}
           </StyledTableCell>
@@ -66,18 +73,29 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
+              width: "100px",
             }}
-            component="th"
-            scope="row"
           >
             {row.id}
           </StyledTableCell>
-          <StyledTableCell component="th" scope="row">
+          <StyledTableCell
+          align="right"
+            sx={{ maxWidth: "100px" }}
+            component="th"
+            scope="row"
+          >
             {row.type}
           </StyledTableCell>
           <StyledTableCell align="right"></StyledTableCell>
           <StyledTableCell align="right">{row.status}</StyledTableCell>
-          <StyledTableCell sx={{ fontWeight: "bold" }} align="right">
+          <StyledTableCell
+            sx={{
+              fontWeight: "bold",
+            }}
+            align="right"
+            component="th"
+            scope="row"
+          >
             {row.description}
           </StyledTableCell>
           <StyledTableCell align="right">

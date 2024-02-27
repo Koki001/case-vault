@@ -142,23 +142,23 @@ const ViewCases = ({ caseFilters }: Props) => {
             <div className={s.casesTable}>
               <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
-                  <TableHead>
-                    <StyledTableRow>
+                  <TableHead >
+                    <StyledTableRow >
                       <StyledTableCell sx={{ minWidth: "50px" }} />
                       <StyledTableCell sx={{ minWidth: "90px" }}>
                         Case No
                       </StyledTableCell>
-                      <StyledTableCell sx={{ minWidth: "100px" }}>
+                      <StyledTableCell sx={{ minWidth: "230px" }}>
                         Case Unique ID
                       </StyledTableCell>
-                      <StyledTableCell sx={{ minWidth: "150px" }}>
+                      <StyledTableCell align="right" sx={{ maxWidth: "50px" }}>
                         Case Type
                       </StyledTableCell>
                       <StyledTableCell />
                       <StyledTableCell align="right" sx={{ minWidth: "80px" }}>
                         Status
                       </StyledTableCell>
-                      <StyledTableCell align="right" sx={{ minWidth: "200px" }}>
+                      <StyledTableCell align="right" sx={{ minWidth: "160px" }}>
                         Title / Description
                       </StyledTableCell>
                       <StyledTableCell align="right" sx={{ minWidth: "120px" }}>
@@ -166,7 +166,7 @@ const ViewCases = ({ caseFilters }: Props) => {
                       </StyledTableCell>
                     </StyledTableRow>
                   </TableHead>
-                  <TableBody>
+                  <TableBody >
                     {cases.map((item, index) => (
                       <Row
                         key={index}

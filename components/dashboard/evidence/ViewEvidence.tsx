@@ -133,14 +133,16 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
   } else {
     return (
       <Suspense>
-        <div className={s.evidenceViewContainer}>
+        <div className={`${s.evidenceViewContainer} wrapper`}>
           {evidence.length > 0 && !update ? (
             <div className={s.evidenceTable}>
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableContainer component={Paper} sx={{minWidth: "200px"}}>
+                <Table aria-label="customized table">
                   <TableHead>
                     <TableRow>
-                      <StyledTableCell sx={{maxWidth: "100px"}}>Case ID</StyledTableCell>
+                      <StyledTableCell sx={{ maxWidth: "100px" }}>
+                        Case ID
+                      </StyledTableCell>
                       {/* <StyledTableCell align="right">Description</StyledTableCell> */}
                       <StyledTableCell align="right">
                         Location Found
@@ -176,7 +178,7 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
                           >
                             <StyledTableCell
                               sx={{
-                                maxWidth: "300px",
+                                minWidth: "100px",
                                 whiteSpace: "nowrap",
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",

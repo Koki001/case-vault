@@ -56,43 +56,19 @@ const Evidence = () => {
     <Suspense>
       <div className={s.evidenceContainer}>
         <div className={s.evidenceOptionsNav}>
-          {/* <ToggleButtonGroup
-            color="primary"
-            orientation="horizontal"
-            value={currentView}
-            exclusive
-            onChange={handleChange}
-            aria-label="Platform"
-          >
-            <li>
-              <ToggleButton
-                disableRipple
-                sx={sidebarStyleObj}
-                value="uploadEvidence"
-              >
-                Add Evidence
-              </ToggleButton>
-            </li>
-            <li>
-              <ToggleButton
-                disableRipple
-                sx={sidebarStyleObj}
-                value="viewEvidence"
-                onClick={() => router.push(`?view=evidence`)}
-              >
-                View Evidence
-              </ToggleButton>
-            </li>
-          </ToggleButtonGroup> */}
+          {currentView === "viewEvidence" ? (
+            <h2>Evidence Lookup</h2>
+          ) : (
+            currentView === "uploadEvidence" && <h2>Add Evidence</h2>
+          )}
 
           {currentView === "viewEvidence" && !isEvidenceDetails && (
             <>
               <p className={s.filtersNotice}>
-                Use evidence filters below, or leave empty to retrieve all
-                evidence.
+                Use filters below, or leave empty to retrieve all records
               </p>
               <form
-                className={s.evidenceSearchForm}
+                className={`${s.evidenceSearchForm} wrapper`}
                 onSubmit={handleSearchEvidence}
               >
                 <TextField

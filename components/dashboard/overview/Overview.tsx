@@ -1,44 +1,21 @@
 "use client";
 
-import {
-  BarChart,
-  Bar,
-  Rectangle,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-
 import s from "./styles.module.css";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { dataset } from "@/data/staticOverview";
+import Chart from "chart.js/auto";
+import LineChart from "./LineChart";
 
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className={s.customTooltip}>
-        <p className="label">{`${payload[0].value} incidents`}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
 
 const Overview = () => {
   const [townOptions, setTownOptions] = useState("burlington");
-  useEffect(() => {
-    console.log(
-      "PLEASE IGNORE WARNING ABOUT `XAxis: Support for defaultProps will be removed`. Recharts is working on it! "
-    );
-  }, []);
+  const chartRef = useRef(null)
+
+
   return (
-    <div className={s.overviewContainer}>
+    <div className={`${s.overviewContainer} wrapper`}>
       <div className={s.overviewContainerTasks}>
         <h2>List of tasks that need to be completed</h2>
       </div>
@@ -66,14 +43,7 @@ const Overview = () => {
           </ToggleButtonGroup>
         </div>
         <div className={s.overviewCrimeStatChart}>
-          {/* <ResponsiveContainer width="100%" height="100%">
-            <BarChart width={730} height={250} data={dataset}>
-              <XAxis dataKey="type" />
-              <YAxis />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey={townOptions} fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer> */}
+          <LineChart />
         </div>
       </div>
     </div>

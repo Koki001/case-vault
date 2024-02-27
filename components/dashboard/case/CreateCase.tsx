@@ -16,6 +16,8 @@ import IconButton from "@mui/material/IconButton";
 import s from "./styles.module.css";
 import { useRouter } from "next/navigation";
 import Loader from "../../loader/Loader";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 interface FormData {
   description: string;
@@ -85,15 +87,16 @@ const CreateCase = () => {
     }
   };
 
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setReportFile(file);
+      e.target.value = ""
     }
   };
 
   const handleAddField = (field: keyof FormData) => {
- 
     if (
       field === "suspects" ||
       field === "witnesses" ||
@@ -124,7 +127,7 @@ const CreateCase = () => {
   const handleCreateCase = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      setUpdate(true)
+      setUpdate(true);
       const formDataWithReport = new FormData();
       formDataWithReport.append("case", formData.description);
 
@@ -147,7 +150,7 @@ const CreateCase = () => {
         },
         body: JSON.stringify(formData),
       });
-      
+
       if (res.ok) {
         const reportCaseId = await res.json();
         formDataWithReport.append("caseId", reportCaseId.caseId);
@@ -169,7 +172,7 @@ const CreateCase = () => {
             witnesses: [],
             officerInCharge: [],
           });
-          setUpdate(false)
+          setUpdate(false);
           router.push(`?view=case`);
         }
       }
@@ -224,10 +227,12 @@ const CreateCase = () => {
   };
 
   return (
-    <form className={s.createCaseContainer} onSubmit={handleCreateCase}>
+    <form
+      className={`${s.createCaseContainer} wrapper`}
+      onSubmit={handleCreateCase}
+    >
       {update && <Loader message={"Creating Case"} />}
       <div className={s.createCaseHeadings}>
-        
         <TextField
           placeholder="Case Title / Description"
           variant="outlined"
@@ -285,19 +290,32 @@ const CreateCase = () => {
         disabled={reportFile !== null}
       />
       <div>
-        <Button
-          disabled={formData.report !== ""}
-          variant="outlined"
-          component="label"
-        >
-          Upload Report
-          <input
-            type="file"
-            hidden
-            accept=".doc, .docx"
-            onChange={handleFileUpload}
-          />
-        </Button>
+        <div className={s.caseReportUpload}>
+          {reportFile ? (
+            <p>
+              <TaskAltIcon color="success" /> {reportFile.name} selected
+            </p>
+          ) : (
+            <p>
+              <HighlightOffIcon color="error" /> No File Selected
+            </p>
+          )}
+          <Button
+            disabled={formData.report !== ""}
+            variant="outlined"
+            component="label"
+          >
+            Upload Report
+            <input
+              type="file"
+              
+              hidden
+              accept=".doc, .docx"
+              onChange={handleFileUpload}
+            />
+          </Button>
+        </div>
+
         {reportFile !== null && (
           <div>
             file uploaded{" "}
