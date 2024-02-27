@@ -6,13 +6,11 @@ import { useEffect, useRef, useState } from "react";
 
 import { dataset } from "@/data/staticOverview";
 import Chart from "chart.js/auto";
-import LineChart from "./LineChart";
-
+import BarChart from "./BarChart";
 
 const Overview = () => {
   const [townOptions, setTownOptions] = useState("burlington");
-  const chartRef = useRef(null)
-
+  const chartRef = useRef(null);
 
   return (
     <div className={`${s.overviewContainer} wrapper`}>
@@ -43,7 +41,7 @@ const Overview = () => {
           </ToggleButtonGroup>
         </div>
         <div className={s.overviewCrimeStatChart}>
-          <LineChart />
+          <BarChart location={townOptions} />
         </div>
       </div>
     </div>

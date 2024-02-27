@@ -21,6 +21,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavStore } from "../../store/burgerSlice";
 
 const sidebarStyleObj = {
   "&.MuiButtonBase-root": {
@@ -59,6 +60,8 @@ const Navbar = () => {
 
   const { data: session, status } = useSession();
   const { firstName, lastName, email, badgeNumber } = useUserStore();
+  const showNav = useNavStore((state) => state.loading);
+  const setShowNav = useNavStore((state) => state.setLoading);
 
   const handleToggle = (ref: React.RefObject<HTMLButtonElement>) => {
     if (ref.current) {
@@ -87,14 +90,18 @@ const Navbar = () => {
     if (clickedMenuItem === "Add") {
       if (openCases) {
         router.push(`?view=case&caseOptions=createCase`);
+        setShowNav(false);
       } else if (openEvidence) {
         router.push(`?view=evidence&evidenceOptions=uploadEvidence`);
+        setShowNav(false);
       }
     } else if (clickedMenuItem === "View") {
       if (openCases) {
         router.push(`?view=case&caseOptions=viewCases`);
+        setShowNav(false);
       } else if (openEvidence) {
         router.push(`?view=evidence&evidenceOptions=viewEvidence`);
+        setShowNav(false);
       }
     }
 
@@ -107,6 +114,7 @@ const Navbar = () => {
     newView: string
   ) => {
     if (newView !== null) {
+      setShowNav(false);
       router.push(`/dashboard?view=${newView}`);
     }
   };
@@ -114,7 +122,13 @@ const Navbar = () => {
   if (status === "authenticated" && email) {
     return (
       <Suspense>
-        <div className={s.navContainer}>
+        <div
+          className={
+            showNav
+              ? `${s.navContainer} ${s.navContainerMobile}`
+              : `${s.navContainer}`
+          }
+        >
           <div className={`${s.navWrapper} wrapper`}>
             <div className={s.navUserInfo}>
               <CircleIcon color="success" />
