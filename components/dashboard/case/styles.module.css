@@ -32,6 +32,7 @@
 
 .caseOptionsNav .caseSearchForm {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 5px;

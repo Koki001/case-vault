@@ -5,9 +5,9 @@ import Image from "next/image";
 import s from "./styles.module.css";
 import Link from "next/link";
 import Navbar from "../navbar/Navbar";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { useNavStore } from "../../store/burgerSlice";
-
+import MenuIcon from "@mui/icons-material/Menu";
 const Header = () => {
   const showNav = useNavStore((state) => state.setLoading);
 
@@ -27,13 +27,9 @@ const Header = () => {
             <h1>Halton Regional Police Service</h1>
             <h2>One Vision, One Mission, One Team</h2>
           </div>
-          <Button
-            onClick={() => showNav(true)}
-            variant="contained"
-            className={s.hamburgerMenu}
-          >
-            MENU
-          </Button>
+          <IconButton onClick={() => showNav(true)} className={s.hamburgerMenu}>
+            <MenuIcon sx={{width: "100%", height: "100%", color: "white"}}/>
+          </IconButton>
         </div>
       </div>
       <Navbar />

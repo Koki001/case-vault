@@ -10,6 +10,7 @@ import {
   Button,
   ClickAwayListener,
   Grow,
+  IconButton,
   MenuItem,
   MenuList,
   Paper,
@@ -22,6 +23,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavStore } from "../../store/burgerSlice";
+import CloseIcon from "@mui/icons-material/Close";
 
 const sidebarStyleObj = {
   "&.MuiButtonBase-root": {
@@ -130,6 +132,11 @@ const Navbar = () => {
           }
         >
           <div className={`${s.navWrapper} wrapper`}>
+            <div className={s.navExitMenu}>
+              <IconButton onClick={() => setShowNav(false)}>
+                <CloseIcon />
+              </IconButton>
+            </div>
             <div className={s.navUserInfo}>
               <CircleIcon color="success" />
               <div className={s.navUserInfoName}>
@@ -189,6 +196,7 @@ const Navbar = () => {
                         transition
                         disablePortal
                         sx={{ width: "120px", zIndex: "100" }}
+                        className={s.muiDropDown}
                       >
                         {({ TransitionProps, placement }) => (
                           <Grow
@@ -266,6 +274,7 @@ const Navbar = () => {
                         transition
                         disablePortal
                         sx={{ width: "120px", zIndex: "100" }}
+                        className={s.muiDropDown}
                       >
                         {({ TransitionProps, placement }) => (
                           <Grow

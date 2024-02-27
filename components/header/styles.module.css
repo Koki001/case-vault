@@ -48,4 +48,34 @@
   .headerContainer .hamburgerMenu {
     display: block;
   }
+  .headerTitle {
+    width: 250px;
+    text-align: center;
+  }
+  .headerTitle h1 {
+    font-size: 24px;
+  }
+  .headerTitle h2 {
+    font-size: 20px;
+  }
+  .headerTitle svg {
+    color: white;
+  }
+}
+@media (max-width: 600px) {
+  .headerTitle {
+    width: 100px;
+    text-align: center;
+  }
+  .headerTitle h1 {
+    font-size: 22px;
+    margin-left: -70px;
+  }
+  .headerTitle h2 {
+    font-size: 18px;
+    margin-left: -70px;
+  }
+  .headerContainer .hamburgerMenu {
+    width: 80px;
+  }
 }
