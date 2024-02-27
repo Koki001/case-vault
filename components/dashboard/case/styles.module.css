@@ -30,7 +30,7 @@
   max-width: 2000px;
   margin-bottom: auto;
   overflow: auto;
-  max-height: calc(100dvh - 350px);
+  /* max-height: calc(100dvh - 350px); */
 }
 
 .caseOptionsNav .caseSearchForm {
@@ -92,7 +92,7 @@
   width: 100%;
   max-width: 1800px;
   padding: 30px;
-  max-height: calc(100vh - 250px);
+  /* max-height: calc(100vh - 250px); */
   overflow: auto;
 }
 
@@ -220,8 +220,9 @@
 }
 .styledRow:hover {
   cursor: pointer !important;
-  background-color: #e3f2fd !important;
+  background-color: white !important;
 }
 .styledRowOpen {
-  background-color: #bbdefb !important;
+  background-color: #e3f2fd !important;
+  border: 1px solid black !important;
 }

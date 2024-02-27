@@ -1,12 +1,28 @@
 .headerContainer {
-  position: relative;
-  background-color: black;
-  color: white;
-  padding: 30px 50px;
+  width: 100%;
+  position: sticky;
+  top: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  color: white;
+  border-bottom: 2px solid black;
+  z-index: 100;
+}
+.headerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px 0;
+}
+.headerMain {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
 }
 /* to make up for image logo */
 .headerContainer h1,

@@ -227,6 +227,7 @@ const CreateCase = () => {
     <form className={s.createCaseContainer} onSubmit={handleCreateCase}>
       {update && <Loader message={"Creating Case"} />}
       <div className={s.createCaseHeadings}>
+        
         <TextField
           placeholder="Case Title / Description"
           variant="outlined"

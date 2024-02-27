@@ -66,3 +66,16 @@ export const StyledTableRowEvidence = styled(TableRow)(({ theme }) => ({
     backgroundColor: "#e3f2fd",
   },
 }));
+export const StyledTableRowCase = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+  "&:hover": {
+    cursor: "pointer",
+    backgroundColor: "white",
+  },
+}));

@@ -56,7 +56,7 @@ const Evidence = () => {
     <Suspense>
       <div className={s.evidenceContainer}>
         <div className={s.evidenceOptionsNav}>
-          <ToggleButtonGroup
+          {/* <ToggleButtonGroup
             color="primary"
             orientation="horizontal"
             value={currentView}
@@ -83,7 +83,7 @@ const Evidence = () => {
                 View Evidence
               </ToggleButton>
             </li>
-          </ToggleButtonGroup>
+          </ToggleButtonGroup> */}
 
           {currentView === "viewEvidence" && !isEvidenceDetails && (
             <>

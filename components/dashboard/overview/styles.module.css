@@ -5,7 +5,7 @@
   max-width: 2000px;
   margin-bottom: auto;
   overflow: auto;
-  max-height: calc(100dvh - 180px);
+  /* max-height: calc(100dvh - 180px); */
 }
 .overviewCrimeStats {
   width: 100%;

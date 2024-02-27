@@ -2,16 +2,17 @@ html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow-y: scroll;
 }
 body {
   margin: 0;
-  height: 100dvh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 160px;
-  min-width: 1000px;
+  /* margin-left: 160px;
+  min-width: 1000px; */
 }
 article,
 aside,
@@ -234,8 +235,8 @@ h5 {
   overflow: hidden;
 }
 .wrapper {
-  max-width: 1200px;
-  width: 90%;
+  max-width: 1800px;
+  width: 95%;
   margin: auto;
 }
 .noResultsGlobal {
@@ -261,7 +262,7 @@ footer {
   margin-top: 50px;
 }
 
-main {
+/* main {
   padding: 100px 0;
   width: 80%;
-}
+} */

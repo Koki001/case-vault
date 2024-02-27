@@ -61,7 +61,15 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
           >
             {row.caseNumber}
           </StyledTableCell>
-          <StyledTableCell sx={{whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}} component="th" scope="row">
+          <StyledTableCell
+            sx={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+            component="th"
+            scope="row"
+          >
             {row.id}
           </StyledTableCell>
           <StyledTableCell component="th" scope="row">
@@ -78,28 +86,48 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
         </StyledTableRow>
         <StyledTableRow>
           <StyledTableCell
-            style={{
+            sx={{
               paddingBottom: 0,
               paddingTop: 0,
             }}
             colSpan={8}
           >
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <Button
-                variant="contained"
-                onClick={() => handleCaseDetails(cases[caseIndex])}
-                sx={{ width: "100%", marginTop: "15px" }}
-              >
-                VIEW AND EDIT CASE DETAILS HERE
-              </Button>
+            <Collapse
+              sx={{
+                borderTop: "none",
+                borderRadius: "3px",
+                marginBottom: "10px",
+              }}
+              in={open}
+              timeout="auto"
+              unmountOnExit
+            >
               <Box
                 sx={{
-                  margin: "30px 0",
-                  border: "2px solid black",
+                  margin: "10px 0",
                   zIndex: 10,
                   width: "100%",
+                  display: "flex",
+                  flexDirection: "row-reverse",
+                  justifyContent: "center",
+                  alignIems: "stretch",
+                  border: "1px solid #8bc34a",
                 }}
               >
+                <Button
+                  variant="outlined"
+                  color="success"
+                  onClick={() => handleCaseDetails(cases[caseIndex])}
+                  sx={{
+                    width: "120px",
+                    fontWeight: "bolder",
+                    margin: "0",
+                    border: "none",
+                    backgroundColor: "#dcedc8",
+                  }}
+                >
+                  VIEW AND EDIT CASE
+                </Button>
                 <Table size="small" aria-label="purchases">
                   <TableHead>
                     <StyledTableRow>

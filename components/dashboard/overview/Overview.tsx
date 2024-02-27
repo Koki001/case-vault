@@ -66,14 +66,14 @@ const Overview = () => {
           </ToggleButtonGroup>
         </div>
         <div className={s.overviewCrimeStatChart}>
-          <ResponsiveContainer width="100%" height="100%">
+          {/* <ResponsiveContainer width="100%" height="100%">
             <BarChart width={730} height={250} data={dataset}>
               <XAxis dataKey="type" />
               <YAxis />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey={townOptions} fill="#8884d8" />
             </BarChart>
-          </ResponsiveContainer>
+          </ResponsiveContainer> */}
         </div>
       </div>
     </div>

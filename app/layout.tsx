@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Navbar from "@/components/navbar/Navbar";
 import Header from "@/components/header/Header";
 import { Suspense } from "react";
 import { auth } from "../auth";
+
+import s from "./page.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,15 +24,10 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport"/>
-      </head>
       <body className={inter.className}>
         <SessionProvider session={session}>
           <Header />
-          <Sidebar />
           {children}
-          {/* <footer>some footer</footer> */}
         </SessionProvider>
       </body>
     </html>

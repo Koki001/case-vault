@@ -56,39 +56,10 @@ const Case = () => {
     <Suspense>
       <div className={s.caseContainer}>
         <div className={s.caseOptionsNav}>
-          <ToggleButtonGroup
-            color="primary"
-            orientation="horizontal"
-            value={currentView}
-            exclusive
-            onChange={handleChange}
-            aria-label="Platform"
-          >
-            <li>
-              <ToggleButton
-                disableRipple
-                sx={sidebarStyleObj}
-                value="createCase"
-              >
-                Create New Case
-              </ToggleButton>
-            </li>
-            <li>
-              <ToggleButton
-                onClick={() => router.push(`?view=case`)}
-                disableRipple
-                sx={sidebarStyleObj}
-                value="viewCases"
-              >
-                View Cases
-              </ToggleButton>
-            </li>
-          </ToggleButtonGroup>
-
           {currentView === "viewCases" && !isCaseDetails && (
             <>
               <p className={s.filtersNotice}>
-                Use case filters below or leave empty to retrieve all cases
+                Use filters below or leave empty to retrieve all records
               </p>
               <form className={s.caseSearchForm} onSubmit={handleSearchCase}>
                 <TextField

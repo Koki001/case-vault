@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  position: relative;
   flex: 1;
 }
 .viewContainer > div:first-child {

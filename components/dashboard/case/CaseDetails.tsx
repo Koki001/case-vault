@@ -100,7 +100,6 @@ const CaseDetails = () => {
 
         const { fileName, fileContents } = await response.json();
         setFullReport(fileContents);
-        console.log(fileName);
       } catch (error) {
         console.error("Error loading file:", error);
       }

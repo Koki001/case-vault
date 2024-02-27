@@ -1,0 +1,122 @@
+.navContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: white;
+}
+.navWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* holds toggle group for navbar */
+.navContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navContainer li {
+  width: 120px;
+  margin: 0 5px;
+}
+.navContainer li button {
+  width: 100%;
+}
+.navUserInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: black;
+  width: 165px;
+}
+.navUserInfoName {
+  margin-left: 10px;
+}
+.navLogout {
+  min-width: 165px;
+  display: flex;
+  justify-content: flex-end;
+}
+/* mui generated parent div for toggle button group */
+.navContent div:first-child {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* .sidebarUserInfo {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebarUserInfo h3 {
+  margin-bottom: 20px;
+}
+.sidebarUserInfo h3 span {
+  display: block;
+} */
+.sidebarContent li button {
+  height: 100%;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid !important;
+  border-color: #01579b;
+}
+.sidebarContainer .MuiToggleButton-root.Mui-selected {
+  background-color: green !important;
+  color: white !important;
+}
+.sidebarLogout {
+  height: 80px;
+  width: 100%;
+}
+.sidebarLogout button {
+  height: 100%;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* navbar styles when user is logged out */
+
+.navContainerFiller {
+  animation: none;
+  transition: none;
+  background-color: #e0e0e0;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+.navContainerFiller ul {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navContainerFiller li {
+  margin: 10px 0;
+  font-size: 18px;
+  width: 100%;
+}
+.navContainerFiller li * {
+  width: 100%;
+}
+
+@keyframes moveIn {
+  from {
+    left: -200px;
+  }
+  to {
+    left: 0;
+  }
+}

@@ -137,7 +137,7 @@ const ViewCases = ({ caseFilters }: Props) => {
   } else {
     return (
       <Suspense>
-        <div className={s.viewCasesContainer}>
+        <div className={`${s.viewCasesContainer} wrapper`}>
           {cases.length > 0 && !update ? (
             <div className={s.casesTable}>
               <TableContainer component={Paper}>

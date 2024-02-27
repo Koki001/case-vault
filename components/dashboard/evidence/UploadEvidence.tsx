@@ -130,7 +130,6 @@ const UploadEvidence = ({ propId }: any) => {
       console.log(error);
     }
   };
-  console.log(evidence)
   if (!update) {
 
     return (
