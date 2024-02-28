@@ -72,7 +72,7 @@ export const tasks = [
     location: "Law Enforcement Training Center",
   },
   {
-    type: "Community Engagement",
+    type: "Community Work",
     status: "complete",
     time: "16:30",
     description:

@@ -64,7 +64,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  width: 750px;
   margin-bottom: 30px;
 }
 .topHalf > div:first-child {
@@ -84,7 +84,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  width: 750px;
   margin-bottom: 30px;
 }
 .bottomHalf > div:first-child {
@@ -118,7 +118,7 @@
   width: 48%;
 }
 .muiDescription {
-  width: 600px;
+  width: 100%;
 }
 .evidenceDetailsContainer {
   padding: 30px 0;
@@ -178,6 +178,14 @@
 }
 
 @media (max-width: 1000px) {
+  .topHalf {
+    width: 650px;
+  }
+
+  .bottomHalf {
+    width: 650px;
+    margin-bottom: 30px;
+  }
   .evidenceOptionsNav .evidenceSearchForm {
     width: 600px;
     justify-content: space-between;

@@ -30,6 +30,7 @@ const Overview = () => {
   } = usePagination({ data: tasks, maxPerPage: 4 });
   return (
     <div className={`${s.overviewContainer} wrapper`}>
+      <h2>Today`s Tasks</h2>
       <div className={s.taskContainerMain}>
         <div className={s.overviewContainerTasks}>
           {currentItems?.map((t, index) => {
@@ -49,7 +50,7 @@ const Overview = () => {
             <IconButton onClick={() => prevPage()}>
               <ChevronLeftIcon />
             </IconButton>
-            TASKS
+            <p>{currentPage} of {totalPages}</p>
             <IconButton onClick={() => nextPage()}>
               <ChevronRightIcon />
             </IconButton>

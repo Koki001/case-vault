@@ -2,6 +2,11 @@
   padding: 20px 0;
   margin-bottom: auto;
 }
+.overviewContainer > h2:first-child {
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+}
 .overviewCrimeStats {
   width: 100%;
   display: flex;
@@ -18,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  margin: 100px 0;
+  margin-bottom: 100px;
 }
 
 .overviewContainerTasks {
@@ -37,6 +42,7 @@
 }
 .overviewCrimeStatChart {
   width: 100vw;
+  height: 100vh;
   max-width: 700px;
   max-height: 700px;
   position: relative;
@@ -61,7 +67,7 @@
   margin-right: 50px;
   margin-bottom: 12px;
   height: 100px;
-  background-color: rgba(186, 218, 210, 0.452);
+  background-color: rgba(206, 224, 224, 0.452);
 }
 .taskCard:hover {
   cursor: pointer;
@@ -107,6 +113,9 @@
   -webkit-line-clamp: 2; /* Adjust as needed */
   -webkit-box-orient: vertical;
   white-space: normal; /* Allows wrapping */
+}
+.taskCardContentLeft + p {
+  text-align: right;
 }
 @media (max-width: 1200px) {
   .taskContainerMain {

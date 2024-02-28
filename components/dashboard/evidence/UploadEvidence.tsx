@@ -16,6 +16,9 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import { useEvidenceStore } from "../../../store/evidenceSlice";
 import Loader from "../../loader/Loader";
+import formValidator from "../../../utils/formValidator";
+import { useNotificationStore } from "../../../store/notificationSlice";
+import evidenceValidator from "../../../utils/evidenceValidator";
 
 interface CaseId {
   id: string;
@@ -57,6 +60,9 @@ const UploadEvidence = ({ propId }: any) => {
   const [evidence, setEvidence] = useState(initialEvidenceState);
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
   const update = useEvidenceStore((state) => state.update);
+  const setNotification = useNotificationStore(
+    (state) => state.setNotification
+  );
 
   const [caseIdCollection, setCaseIdCollection] = useState<CaseId[]>([]);
   const [photo, setPhoto] = useState<File | null>(null);
@@ -67,7 +73,6 @@ const UploadEvidence = ({ propId }: any) => {
       setPhoto(uploadedFile);
     }
   };
-
   useEffect(() => {
     const fetchCaseIds = async () => {
       try {
@@ -114,19 +119,25 @@ const UploadEvidence = ({ propId }: any) => {
     formData.append("type", evidence.type);
     // formData.append("custodyChain", JSON.stringify(custodyChain));
 
-    try {
-      const res = await fetch("api/addEvidence", {
-        method: "POST",
-        body: formData,
-      });
-      // Handle response
-      if (res.ok) {
-        setEvidence(initialEvidenceState);
-        setPhoto(null);
-        setUpdate(true);
+    const [isValid, notificationMessage] = evidenceValidator(evidence, {
+      photo,
+    });
+    setNotification(!isValid, notificationMessage);
+    if (isValid) {
+      try {
+        const res = await fetch("api/addEvidence", {
+          method: "POST",
+          body: formData,
+        });
+        // Handle response
+        if (res.ok) {
+          setEvidence(initialEvidenceState);
+          setPhoto(null);
+          // setUpdate(true);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
   if (!update) {
@@ -141,25 +152,31 @@ const UploadEvidence = ({ propId }: any) => {
                 value={propId}
                 disabled
                 className={s.muiCaseId}
+                required
               />
             ) : (
               <Autocomplete
                 className={s.muiCaseId}
                 id="case-id-choices"
-                freeSolo
-                options={caseIdCollection.map((option) => ({
-                  id: option.id,
-                  label: `#${option.caseNumber} - ${option.id}`,
-                }))}
+                isOptionEqualToValue={(option, value) => option.id === value.id}
+                options={caseIdCollection}
+                getOptionLabel={(option) =>
+                  `#${option.caseNumber} - ${option.id}`
+                }
                 renderInput={(params) => (
                   <TextField {...params} label="Case # - ID" />
                 )}
                 onChange={(e: any, val: any) => {
                   setEvidence((prev) => ({
                     ...prev,
-                    caseId: val && val.id ? val.id : "",
+                    caseId: val ? val.id : null,
                   }));
                 }}
+                value={
+                  caseIdCollection.find(
+                    (option) => option.id === evidence.caseId
+                  ) || null
+                }
               />
             )}
             <TextField

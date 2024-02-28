@@ -18,6 +18,8 @@ import { useRouter } from "next/navigation";
 import Loader from "../../loader/Loader";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import { useNotificationStore } from "../../../store/notificationSlice";
+import formValidator from "../../../utils/formValidator";
 
 interface FormData {
   description: string;
@@ -39,7 +41,12 @@ interface Labels {
 
 const CreateCase = () => {
   const router = useRouter();
+  const { isOpen, message } = useNotificationStore((state) => state);
   const [reportFile, setReportFile] = useState<File | null>(null);
+  const setNotification = useNotificationStore(
+    (state) => state.setNotification
+  );
+
   const [formData, setFormData] = useState<FormData>({
     description: "",
     report: "",
@@ -87,12 +94,11 @@ const CreateCase = () => {
     }
   };
 
-
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setReportFile(file);
-      e.target.value = ""
+      e.target.value = "";
     }
   };
 
@@ -126,58 +132,57 @@ const CreateCase = () => {
 
   const handleCreateCase = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
-    try {
-      setUpdate(true);
-      const formDataWithReport = new FormData();
-      formDataWithReport.append("case", formData.description);
-
-      if (reportFile === null) {
-        // Use textFile if reportFile is null
-        const reportContent = formData.report;
-        const textFile = new File([reportContent], "report.txt", {
-          type: "text/plain",
-        });
-        formDataWithReport.append("file", textFile);
-      } else {
-        // Use reportFile if reportFile is not null
-        formDataWithReport.append("file", reportFile);
-      }
-
-      const res = await fetch("api/createCase", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        const reportCaseId = await res.json();
-        formDataWithReport.append("caseId", reportCaseId.caseId);
-
-        const fileRes = await fetch("api/uploadReport", {
-          method: "POST",
-          body: formDataWithReport,
-        });
-
-        if (fileRes.ok) {
-          // setUpdate(true);
-          setFormData({
-            description: "",
-            report: "",
-            type: "",
-            status: "Active",
-            suspects: [],
-            victims: [],
-            witnesses: [],
-            officerInCharge: [],
+    const [isValid, notificationMessage] = formValidator(formData, {
+      reportFile,
+    });
+    setNotification(!isValid, notificationMessage);
+    if (isValid) {
+      try {
+        setUpdate(true);
+        const formDataWithReport = new FormData();
+        formDataWithReport.append("case", formData.description);
+        if (reportFile === null) {
+          const reportContent = formData.report;
+          const textFile = new File([reportContent], "report.txt", {
+            type: "text/plain",
           });
-          setUpdate(false);
-          router.push(`?view=case`);
+          formDataWithReport.append("file", textFile);
+        } else {
+          formDataWithReport.append("file", reportFile);
         }
+        const res = await fetch("api/createCase", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if (res.ok) {
+          const reportCaseId = await res.json();
+          formDataWithReport.append("caseId", reportCaseId.caseId);
+          const fileRes = await fetch("api/uploadReport", {
+            method: "POST",
+            body: formDataWithReport,
+          });
+          if (fileRes.ok) {
+            // setUpdate(true);
+            setFormData({
+              description: "",
+              report: "",
+              type: "",
+              status: "Active",
+              suspects: [],
+              victims: [],
+              witnesses: [],
+              officerInCharge: [],
+            });
+            setUpdate(false);
+            router.push(`?view=case`);
+          }
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -243,8 +248,10 @@ const CreateCase = () => {
           fullWidth
           sx={{ width: "500px", marginRight: "20px" }}
           required
+          inputProps={{ maxLength: 100 }}
         />
         <FormControl
+          required
           variant="outlined"
           sx={{ minWidth: 170, marginRight: "20px" }}
         >
@@ -308,7 +315,6 @@ const CreateCase = () => {
             Upload Report
             <input
               type="file"
-              
               hidden
               accept=".doc, .docx"
               onChange={handleFileUpload}

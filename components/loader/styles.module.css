@@ -10,7 +10,7 @@
   /* margin-left: 160px; */
   padding: 20px;
   background-color: white;
-  z-index: 10000;
+  z-index: 1000;
   border-radius: 5px;
   min-width: 250px;
 }

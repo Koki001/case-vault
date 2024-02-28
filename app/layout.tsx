@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import { auth } from "../auth";
 
 import s from "./page.module.css";
+import Notifications from "../components/modals/Notifications";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SessionProvider session={session}>
           <Header />
+          <Notifications />
           {children}
         </SessionProvider>
       </body>

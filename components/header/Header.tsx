@@ -9,12 +9,16 @@ import { Button, IconButton } from "@mui/material";
 import { useNavStore } from "../../store/burgerSlice";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useUserStore } from "../../store/userSlice";
+import { useNotificationStore } from "../../store/notificationSlice";
+import Notifications from "../modals/Notifications";
 const Header = () => {
   const showNav = useNavStore((state) => state.setLoading);
   const userBadge = useUserStore((state) => state.badgeNumber);
+  const showNotification = useNotificationStore((state) => state.isOpen);
 
   return (
     <header className={s.headerContainer}>
+      {/* {showNotification && <Notifications />} */}
       <div className={s.headerMain}>
         <div className={`${s.headerWrapper} wrapper`}>
           <Link href={"/"}>

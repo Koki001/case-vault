@@ -17,6 +17,7 @@ import { StyledTableCell, StyledTableRow } from "@/muiStyles/mui";
 import s from "./styles.module.css";
 import { useSearchParams } from "next/navigation";
 import CaseDetails from "./CaseDetails";
+import { useNotificationStore } from "../../../store/notificationSlice";
 
 interface CaseData {
   caseType: string;
@@ -35,6 +36,9 @@ const ViewCases = ({ caseFilters }: Props) => {
   const update = useCaseStore((state) => state.update);
   const setCases = useCaseStore((state) => state.setCases);
   const setUpdate = useCaseStore((state) => state.setUpdate);
+  const setNotification = useNotificationStore(
+    (state) => state.setNotification
+  );
 
   const searchParams = useSearchParams();
   const isCaseDetails = searchParams?.get("id");
@@ -83,11 +87,17 @@ const ViewCases = ({ caseFilters }: Props) => {
 
             if (res.ok) {
               const data = await res.json();
+              if (data.populatedCases.length === 0) {
+                setNotification(
+                  true,
+                  "We couldn't find any cases matching those filters."
+                );
+              }
               setCases(data.populatedCases);
-
               setUpdate(false);
             } else {
               setUpdate(false);
+              setNotification(true, "Something went wrong");
             }
           } catch (error) {
             console.log(error);
@@ -142,8 +152,8 @@ const ViewCases = ({ caseFilters }: Props) => {
             <div className={s.casesTable}>
               <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
-                  <TableHead >
-                    <StyledTableRow >
+                  <TableHead>
+                    <StyledTableRow>
                       <StyledTableCell sx={{ minWidth: "50px" }} />
                       <StyledTableCell sx={{ minWidth: "90px" }}>
                         Case No
@@ -166,7 +176,7 @@ const ViewCases = ({ caseFilters }: Props) => {
                       </StyledTableCell>
                     </StyledTableRow>
                   </TableHead>
-                  <TableBody >
+                  <TableBody>
                     {cases.map((item, index) => (
                       <Row
                         key={index}
