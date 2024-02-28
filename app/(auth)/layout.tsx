@@ -1,9 +1,10 @@
 import Image from "next/image";
 import s from "./layout.module.css";
+import { Paper } from "@mui/material";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={`${s.authLayoutContainer} wrapper`}>
+    <Paper elevation={5} className={`${s.authLayoutContainer} wrapper`}>
       <Image
         src={"/Logos/caseVaultLogo.gif"}
         width={150}
@@ -12,7 +13,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       />
       <h2>HRPS CaseVault</h2>
       {children}
-    </div>
+    </Paper>
   );
 };
 export default AuthLayout;

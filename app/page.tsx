@@ -6,7 +6,7 @@ import Link from "next/link";
 const Home = () => {
   return (
     <main>
-      <h1>next js server stuff</h1>
+      <h1>next js app</h1>
       <p>
         Thanks for visiting! Just a heads up - this project was built without
         the intention to be used on a mobile device. This is definitely subject

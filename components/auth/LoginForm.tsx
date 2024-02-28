@@ -88,8 +88,8 @@ export const LoginForm = () => {
           inputRef={emailRef}
           id="email"
           name="email"
-          type="email"
-          label="Email"
+          type="text"
+          label="Badge Number"
           fullWidth
           required
         />
