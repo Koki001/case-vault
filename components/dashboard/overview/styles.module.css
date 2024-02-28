@@ -1,7 +1,6 @@
 .overviewContainer {
   padding: 20px 0;
   margin-bottom: auto;
-  /* max-height: calc(100dvh - 180px); */
 }
 .overviewCrimeStats {
   width: 100%;
@@ -14,21 +13,112 @@
 .overviewCrimeStats .overviewCrimeStatsOptions {
   margin: 20px 0 100px 0;
 }
-
-.overviewContainerTasks {
-  height: 800px;
+.taskContainerMain {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  margin: 50px 0;
+  align-items: flex-start;
+  margin: 100px 0;
 }
 
+.overviewContainerTasks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 500px;
+  width: 100%;
+}
+.taskPagination {
+  margin-top: auto;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .overviewCrimeStatChart {
   width: 80vw;
   height: 50vh;
   max-width: 1200px;
   max-height: 600px;
   position: relative;
+}
+
+.calendarContainer {
+  height: 350px;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calendarMain {
+  height: 100%;
+}
+
+.taskCard {
+  width: 700px;
+  margin-right: 50px;
+  margin-bottom: 12px;
+  height: 100px;
+  background-color: rgba(186, 218, 210, 0.452);
+}
+.taskCard:hover {
+  cursor: pointer;
+   background-color: rgba(244, 254, 255, 0.452);
+}
+.taskCardHeading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 35%;
+  padding: 0 15px;
+}
+.taskCard p {
+  margin: 0;
+}
+.taskCardHeading span {
+  margin-left: 30px;
+}
+.taskCardContent {
+  height: 65%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+.taskCardHeadingLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.taskCardContentLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 70%;
+}
+.taskCardContentLeft p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; 
+  -webkit-line-clamp: 2; /* Adjust as needed */
+  -webkit-box-orient: vertical;
+  white-space: normal; /* Allows wrapping */
+}
+@media (max-width: 1200px) {
+  .taskContainerMain {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .overviewContainerTasks {
+    margin-bottom: 100px;
+  }
+  .taskCard {
+    margin-right: 0;
+    width: auto;
+    min-width: 350px;
+  }
 }

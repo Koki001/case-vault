@@ -1,21 +1,61 @@
 "use client";
 
 import s from "./styles.module.css";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
-import { dataset } from "@/data/staticOverview";
-import Chart from "chart.js/auto";
 import BarChart from "./BarChart";
+import TaskHolder from "./TaskHolder";
+import TaskCalendar from "./TaskCalendar";
+import usePagination from "@/hooks/usePagination";
+import { tasks } from "@/data/staticTasks";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const Overview = () => {
   const [townOptions, setTownOptions] = useState("burlington");
-  const chartRef = useRef(null);
 
+  const {
+    currentPage,
+    currentItems,
+    totalPages,
+    goToPage,
+    nextPage,
+    prevPage,
+  } = usePagination({ data: tasks, maxPerPage: 4 });
   return (
     <div className={`${s.overviewContainer} wrapper`}>
-      <div className={s.overviewContainerTasks}>
-        <h2>List of tasks that need to be completed</h2>
+      <div className={s.taskContainerMain}>
+        <div className={s.overviewContainerTasks}>
+          {currentItems?.map((t, index) => {
+            return (
+              <TaskHolder
+                key={"task" + index}
+                type={t.type}
+                status={t.status}
+                time={t.time}
+                description={t.description}
+                notes={t.notes}
+                location={t.location}
+              />
+            );
+          })}
+          <div className={s.taskPagination}>
+            <IconButton onClick={() => prevPage()}>
+              <ChevronLeftIcon />
+            </IconButton>
+            TASKS
+            <IconButton onClick={() => nextPage()}>
+              <ChevronRightIcon />
+            </IconButton>
+          </div>
+        </div>
+        <TaskCalendar />
       </div>
       <div className={s.overviewCrimeStats}>
         <h2>Number of incidents by jursidiction</h2>

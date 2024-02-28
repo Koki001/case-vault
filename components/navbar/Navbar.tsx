@@ -141,10 +141,10 @@ const Navbar = () => {
               <CircleIcon color="success" />
               <div className={s.navUserInfoName}>
                 <h3>
-                  <span>{firstName}</span>
+                  <span>{firstName}{" "}</span>
                   <span>{lastName}</span>
                 </h3>
-                <h4>#{badgeNumber}</h4>
+                <h4>Badge #{badgeNumber}</h4>
               </div>
             </div>
             <ul className={s.navContent}>
