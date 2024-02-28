@@ -3,9 +3,11 @@
 import { Button } from "@mui/material";
 import Link from "next/link";
 
+import s from "./page.module.css"
+
 const Home = () => {
   return (
-    <main>
+    <main className={s.mainContainerTag}>
       <h1>next js app</h1>
       <p>
         Thanks for visiting! Just a heads up - this project was built without

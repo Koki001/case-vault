@@ -18,6 +18,7 @@ import Image from "next/image";
 import { StyledTableCell, StyledTableRowEvidence } from "@/muiStyles/mui";
 import { useRouter, useSearchParams } from "next/navigation";
 import EvidenceDetails from "./EvidenceDetails";
+import { useNotificationStore } from "../../../store/notificationSlice";
 
 interface EvidenceData {
   caseId: string;
@@ -37,6 +38,9 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
   const addEvidence = useEvidenceStore((state) => state.addEvidence);
   const update = useEvidenceStore((state) => state.update);
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
+  const setNotification = useNotificationStore(
+    (state) => state.setNotification
+  );
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -87,6 +91,12 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
 
             if (res.ok) {
               const data = await res.json();
+              if (data.evidence.length === 0) {
+                setNotification(
+                  true,
+                  "We couldn't find any evidence matching those filters."
+                );
+              }
               setEvidence(data.evidence);
 
               setUpdate(false);
@@ -136,7 +146,7 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
         <div className={`${s.evidenceViewContainer} wrapper`}>
           {evidence.length > 0 && !update ? (
             <div className={s.evidenceTable}>
-              <TableContainer component={Paper} sx={{minWidth: "200px"}}>
+              <TableContainer component={Paper} sx={{ minWidth: "200px" }}>
                 <Table aria-label="customized table">
                   <TableHead>
                     <TableRow>
@@ -242,7 +252,7 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
           ) : (
             !update &&
             evidence.length === 0 && (
-              <div className="noResultsGlobal">{/* <h2>NO RESULTS</h2> */}</div>
+              <div className="noResultsGlobal"><h2>NO RESULTS</h2></div>
             )
           )}
         </div>

@@ -195,7 +195,7 @@ const ViewCases = ({ caseFilters }: Props) => {
           ) : (
             !update &&
             cases.length === 0 && (
-              <div className="noResultsGlobal">{/* <h2>NO RESULTS</h2> */}</div>
+              <div className="noResultsGlobal"><h2>NO RESULTS</h2></div>
             )
           )}
         </div>

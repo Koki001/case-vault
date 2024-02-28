@@ -24,7 +24,7 @@ const Notifications = () => {
         <Paper
           elevation={3}
           onClick={(e) => e.stopPropagation()}
-          className={s.notificationContainer}
+          className={`${s.notificationContainer} wrapper`}
         >
           <div className={s.notificationContent}>
             <p>{message}</p>

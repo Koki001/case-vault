@@ -203,6 +203,9 @@
   }
   .muiDropDown ul li {
     padding-left: 50px;
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
   }
   .muiDropDown ul > svg:first-child {
     top: 40px;

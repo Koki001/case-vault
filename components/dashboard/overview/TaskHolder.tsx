@@ -37,7 +37,7 @@ const TaskHolder: React.FC<TaskProps> = ({
           <h3>{type}</h3>
           <span className={`${s.taskCardStatus} ${s[statusColor]}`}></span>
         </div>
-        <p>{time}</p>
+        {/* <p>{time}</p> */}
       </div>
       <div className={s.taskCardContent}>
         <div className={s.taskCardContentLeft}>

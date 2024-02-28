@@ -4,6 +4,7 @@ import s from "./styles.module.css";
 import {
   Button,
   IconButton,
+  Paper,
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
@@ -58,7 +59,7 @@ const Overview = () => {
             </IconButton>
           </div>
         </div>
-        <div className={s.overviewCalendar}>
+        <Paper elevation={3} className={s.overviewCalendar}>
           <TaskCalendar />
           <div className={s.taskLegend}>
             <p>
@@ -71,7 +72,7 @@ const Overview = () => {
               <span className={s.taskIncomplete}></span>Incomplete
             </p>
           </div>
-        </div>
+        </Paper>
       </div>
       <div className={s.overviewCrimeStats}>
         <h2>Number of incidents by jursidiction</h2>

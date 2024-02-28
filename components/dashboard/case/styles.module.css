@@ -296,7 +296,7 @@ width: 100%;
 }
 @media (max-width: 900px) {
   .caseOptionsNav .caseSearchForm {
-    width: 380px;
+    width: 360px;
     justify-content: center;
   }
   .caseSearchForm button {

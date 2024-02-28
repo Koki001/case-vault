@@ -60,9 +60,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
 }
 .taskLegend {
-  margin-top: 20px;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -72,7 +72,7 @@
   border-radius: 50%;
   height: 15px;
   width: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .taskComplete {
   background-color: rgba(0, 128, 0, 0.65);
@@ -88,6 +88,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0;
 }
 .calendarContainer {
   height: 350px;
