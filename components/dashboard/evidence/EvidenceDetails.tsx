@@ -90,7 +90,7 @@ const EvidenceDetails = () => {
   // Render the component
   return (
     <Suspense>
-      <div className={s.evidenceDetailsContainer}>
+      <div className={`${s.evidenceDetailsContainer} wrapper`}>
         <Button variant="contained" color="error" onClick={() => router.back()}>
           Back
         </Button>

@@ -144,17 +144,15 @@
 @media (max-width: 900px) {
   .navContainer {
     position: absolute;
-    visibility: hidden;
-    /* display: none; */
-    height: 100dvh;
+    min-height: 100dvh;
     width: 0;
     right: 0;
     overflow-x: hidden;
-    transition: width 0.3s linear;
+    transition: width 0.2s linear;
+    justify-content: center;
+    align-items: flex-start;
   }
   .navContainerMobile {
-    visibility: visible;
-    /* display: block; */
     border-left: 1px solid black;
     width: 200px;
     right: 0;
@@ -163,7 +161,6 @@
     display: block;
     width: 70px;
     height: 70px;
-    margin-top: 20px;
   }
   .navExitMenu button {
     width: 100%;
@@ -178,10 +175,13 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    min-height: 100dvh;
     overflow: hidden;
+    margin: 0;
   }
   .navContent {
     height: 80%;
+    padding: 30px 0;
   }
   .navContent div:first-child {
     height: 100%;
@@ -189,8 +189,7 @@
   }
   .navContainer li {
     width: 100%;
-    height: calc(100% / 6 - 20px);
-    min-height: 100px;
+    height: 80px;
   }
   .navLogout button {
     width: 100%;
@@ -206,11 +205,11 @@
     padding-left: 50px;
   }
   .muiDropDown ul > svg:first-child {
-    top: 50px;
+    top: 40px;
     right: 30px;
   }
   .muiDropDown ul > svg:nth-child(2) {
-    bottom: 50px;
+    bottom: 40px;
     right: 30px;
   }
 }

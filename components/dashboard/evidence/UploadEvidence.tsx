@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Autocomplete,
@@ -56,7 +56,7 @@ const initialEvidenceState = {
 const UploadEvidence = ({ propId }: any) => {
   const [evidence, setEvidence] = useState(initialEvidenceState);
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
-  const update = useEvidenceStore((state) => state.update)
+  const update = useEvidenceStore((state) => state.update);
 
   const [caseIdCollection, setCaseIdCollection] = useState<CaseId[]>([]);
   const [photo, setPhoto] = useState<File | null>(null);
@@ -79,7 +79,6 @@ const UploadEvidence = ({ propId }: any) => {
           if (propId) {
             const data = await res.json();
             setCaseIdCollection(data.cases);
-            
           } else {
             const data = await res.json();
             setCaseIdCollection(data.cases);
@@ -131,9 +130,8 @@ const UploadEvidence = ({ propId }: any) => {
     }
   };
   if (!update) {
-
     return (
-      <div className={s.createEvidenceContainer}>
+      <div className={`${s.createEvidenceContainer} wrapper`}>
         <div className={s.topHalf}>
           <div>
             {propId ? (
@@ -142,11 +140,11 @@ const UploadEvidence = ({ propId }: any) => {
                 variant="outlined"
                 value={propId}
                 disabled
-                sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
+                className={s.muiCaseId}
               />
             ) : (
               <Autocomplete
-                sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
+                className={s.muiCaseId}
                 id="case-id-choices"
                 freeSolo
                 options={caseIdCollection.map((option) => ({
@@ -157,11 +155,15 @@ const UploadEvidence = ({ propId }: any) => {
                   <TextField {...params} label="Case # - ID" />
                 )}
                 onChange={(e: any, val: any) => {
-                  setEvidence((prev) => ({ ...prev, caseId: (val && val.id) ? val.id : "" }));
+                  setEvidence((prev) => ({
+                    ...prev,
+                    caseId: val && val.id ? val.id : "",
+                  }));
                 }}
               />
             )}
             <TextField
+              className={s.muiDiscoveryAddress}
               label="Discovery Site Address"
               variant="outlined"
               value={evidence.location}
@@ -170,14 +172,10 @@ const UploadEvidence = ({ propId }: any) => {
               }
               // multiline
               rows={1}
-              sx={{ minWidth: 300, marginBottom: "5px" }}
             />
           </div>
           <div>
-            <FormControl
-              variant="outlined"
-              sx={{ minWidth: 300, marginRight: "20px", marginBottom: "5px" }}
-            >
+            <FormControl className={s.muiStatus} variant="outlined">
               <InputLabel id="evidence-status">Status</InputLabel>
               <Select
                 labelId="evidence-status"
@@ -198,10 +196,7 @@ const UploadEvidence = ({ propId }: any) => {
                   })}
               </Select>
             </FormControl>
-            <FormControl
-              variant="outlined"
-              sx={{ minWidth: 300, marginBottom: "5px" }}
-            >
+            <FormControl className={s.muiType} variant="outlined">
               <InputLabel id="evidence-type">Type</InputLabel>
               <Select
                 labelId="evidence-type"
@@ -247,9 +242,9 @@ const UploadEvidence = ({ propId }: any) => {
             onChange={(e) =>
               setEvidence((prev) => ({ ...prev, description: e.target.value }))
             }
-            sx={{ width: "620px" }}
             multiline
             minRows={4}
+            className={s.muiDescription}
           />
         </div>
         <Button
@@ -262,7 +257,7 @@ const UploadEvidence = ({ propId }: any) => {
       </div>
     );
   } else {
-    return (<Loader />)
+    return <Loader />;
   }
 };
 

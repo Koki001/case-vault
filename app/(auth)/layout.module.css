@@ -1,6 +1,6 @@
 .authLayoutContainer {
-  height: 650px;
-  width: 450px;
+  width: 100%;
+  max-width: 500px;
   padding: 30px;
   border-radius: 10px;
   background-color: #e0e0e0;
@@ -33,4 +33,7 @@
 .authLayoutContainer form input {
   font-size: 24px;
   padding: 10px;
+}
+.authLayoutContainer form button {
+  margin-bottom: 20px;
 }
