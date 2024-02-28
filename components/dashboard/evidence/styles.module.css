@@ -58,6 +58,9 @@
   align-items: center;
   padding: 50px 0;
 }
+.createEvidenceContainer > button:last-child {
+  margin-top: 20px;
+}
 
 .topHalf {
   display: flex;

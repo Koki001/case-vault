@@ -123,12 +123,16 @@ const CaseDetails = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    height: "80%",
+    height: "90%",
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
-    p: 4,
+    p: 2,
     zIndex: "100",
+  };
+
+  const handleCloseModal = (e: boolean) => {
+    setOpen(e);
   };
 
   if (caseDetails && caseIdParams === caseDetails.id) {
@@ -244,7 +248,10 @@ const CaseDetails = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={styleUpload}>
-              <UploadEvidence propId={caseDetails.id} />
+              <UploadEvidence
+                propId={caseDetails.id}
+                closeFunc={handleCloseModal}
+              />
             </Box>
           </Modal>
           {caseDetails.evidence.length > 0 && (

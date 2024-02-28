@@ -56,7 +56,7 @@ const initialEvidenceState = {
   type: "",
 };
 
-const UploadEvidence = ({ propId }: any) => {
+const UploadEvidence = ({ propId, closeFunc }: any) => {
   const [evidence, setEvidence] = useState(initialEvidenceState);
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
   const update = useEvidenceStore((state) => state.update);
@@ -271,6 +271,15 @@ const UploadEvidence = ({ propId }: any) => {
         >
           Add Evidence
         </Button>
+        {propId && (
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => closeFunc(false)}
+          >
+            Exit
+          </Button>
+        )}
       </div>
     );
   } else {
