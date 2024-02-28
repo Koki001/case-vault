@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Chart } from "react-chartjs-2";
 
 const LineChart = ({ location }: any) => {
-
   let locationProp = {
     labels: [
       "Public Order",
@@ -20,7 +19,7 @@ const LineChart = ({ location }: any) => {
     ],
     datasets: [
       {
-        label: "2024 Incidents",
+        label: "Incidents",
         data: [59, 150, 27, 23, 88, 38, 11, 21, 75, 12, 2],
       },
     ],
@@ -43,7 +42,7 @@ const LineChart = ({ location }: any) => {
       ],
       datasets: [
         {
-          label: "2024 Incidents",
+          label: "Incidents",
           data: [59, 150, 27, 23, 88, 38, 11, 21, 75, 12, 2],
         },
       ],
@@ -66,7 +65,7 @@ const LineChart = ({ location }: any) => {
       ],
       datasets: [
         {
-          label: "2024 Incidents",
+          label: "Incidents",
           data: [57, 97, 33, 18, 94, 21, 19, 18, 44, 6, 1],
         },
       ],
@@ -89,7 +88,7 @@ const LineChart = ({ location }: any) => {
       ],
       datasets: [
         {
-          label: "2024 Incidents",
+          label: "Incidents",
           data: [35, 78, 14, 8, 7, 22, 4, 21, 58, 14, 0],
         },
       ],
@@ -112,7 +111,7 @@ const LineChart = ({ location }: any) => {
       ],
       datasets: [
         {
-          label: "2024 Incidents",
+          label: "Incidents",
           data: [12, 55, 4, 2, 0, 7, 8, 9, 13, 5, 1],
         },
       ],
@@ -120,7 +119,19 @@ const LineChart = ({ location }: any) => {
     locationProp = data;
   }
 
-  return <Chart type="bar" data={locationProp} />;
+  return (
+    <Chart
+      type="pie"
+      data={locationProp}
+      options={{
+        plugins: {
+          legend: {
+            position: "bottom",
+          },
+        },
+      }}
+    />
+  );
 };
 
 export default LineChart;
