@@ -214,7 +214,7 @@
 }
 .evidenceHolder {
   width: 600px;
-  min-width: 400px;
+  min-width: 385px;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
