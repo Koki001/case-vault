@@ -72,6 +72,7 @@ const Evidence = () => {
                 onSubmit={handleSearchEvidence}
               >
                 <TextField
+                  className={s.evidenceFormId}
                   id="caseId"
                   label="Case ID (Unique - 24 characters)"
                   variant="standard"
@@ -86,6 +87,7 @@ const Evidence = () => {
                   inputProps={{ maxLength: 24 }}
                 />
                 <FormControl
+                  className={s.evidenceFormType}
                   variant="standard"
                   sx={{ minWidth: 170, marginRight: "20px" }}
                 >
@@ -118,40 +120,50 @@ const Evidence = () => {
                   </Select>
                 </FormControl>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateField
-                    sx={{ width: 130 }}
-                    variant="standard"
-                    label="Earliest Date"
-                    value={evidenceData.evidenceDateE}
-                    onChange={(e: any) =>
-                      setEvidenceData({ ...evidenceData, evidenceDateE: e })
-                    }
-                  />
-                  <IconButton
-                    sx={{ marginRight: "20px" }}
-                    onClick={(e: any) =>
-                      setEvidenceData({ ...evidenceData, evidenceDateE: null })
-                    }
-                  >
-                    <ClearIcon />
-                  </IconButton>
-                  <DateField
-                    sx={{ width: 130 }}
-                    variant="standard"
-                    label="Before Date"
-                    value={evidenceData.evidenceDateL}
-                    onChange={(e: any) =>
-                      setEvidenceData({ ...evidenceData, evidenceDateL: e })
-                    }
-                  />
-                  <IconButton
-                    sx={{ marginRight: "20px" }}
-                    onClick={(e: any) =>
-                      setEvidenceData({ ...evidenceData, evidenceDateL: null })
-                    }
-                  >
-                    <ClearIcon />
-                  </IconButton>
+                  <div className={s.evidenceFormE}>
+                    <DateField
+                      sx={{ width: 130 }}
+                      variant="standard"
+                      label="Earliest Date"
+                      value={evidenceData.evidenceDateE}
+                      onChange={(e: any) =>
+                        setEvidenceData({ ...evidenceData, evidenceDateE: e })
+                      }
+                    />
+                    <IconButton
+                      sx={{ marginRight: "20px" }}
+                      onClick={(e: any) =>
+                        setEvidenceData({
+                          ...evidenceData,
+                          evidenceDateE: null,
+                        })
+                      }
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </div>
+                  <div className={s.evidenceFormB}>
+                    <DateField
+                      sx={{ width: 130 }}
+                      variant="standard"
+                      label="Before Date"
+                      value={evidenceData.evidenceDateL}
+                      onChange={(e: any) =>
+                        setEvidenceData({ ...evidenceData, evidenceDateL: e })
+                      }
+                    />
+                    <IconButton
+                      sx={{ marginRight: "20px" }}
+                      onClick={(e: any) =>
+                        setEvidenceData({
+                          ...evidenceData,
+                          evidenceDateL: null,
+                        })
+                      }
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </div>
                 </LocalizationProvider>
                 <Button type="submit" variant="contained">
                   Search

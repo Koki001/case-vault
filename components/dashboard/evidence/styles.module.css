@@ -170,6 +170,37 @@
 .evidenceDetailsContainer .evidenceHolderImage img + div {
   align-self: flex-start;
 }
+.evidenceSearchForm .evidenceFormE,
+.evidenceSearchForm .evidenceFormB {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 1000px) {
+  .evidenceOptionsNav .evidenceSearchForm {
+    width: 600px;
+    justify-content: space-between;
+  }
+  .evidenceSearchForm .evidenceFormId {
+    width: 45%;
+  }
+  .evidenceSearchForm .evidenceFormType {
+    width: 45%;
+  }
+  .evidenceSearchForm .evidenceFormE {
+    width: 40%;
+    justify-content: flex-start;
+  }
+  .evidenceSearchForm .evidenceFormB {
+    width: 40%;
+    justify-content: flex-start;
+  }
+  .evidenceSearchForm .evidenceFormE > div:first-child,
+  .evidenceSearchForm .evidenceFormB > div:first-child {
+    width: 100%;
+  }
+}
 
 @media (max-width: 670px) {
   .topHalf {
@@ -221,5 +252,30 @@
   }
   .muiDescription {
     width: 350px;
+  }
+  .evidenceOptionsNav .evidenceSearchForm {
+    width: 350px;
+    justify-content: center;
+  }
+  .evidenceSearchForm .evidenceFormId {
+    width: 100%;
+  }
+  .evidenceSearchForm .evidenceFormType {
+    width: 100%;
+  }
+  .evidenceSearchForm .evidenceFormE {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .evidenceSearchForm .evidenceFormB {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .evidenceSearchForm > button:last-child {
+    margin: 20px auto;
+  }
+  .evidenceFormB button,
+  .evidenceFormE button {
+    margin-right: 0;
   }
 }

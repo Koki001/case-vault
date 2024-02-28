@@ -56,12 +56,15 @@ const Case = () => {
     <Suspense>
       <div className={s.caseContainer}>
         <div className={s.caseOptionsNav}>
-          {currentView === "viewCases" ? <h2>Case Lookup</h2> : currentView === "createCase" && <h2>Create Case</h2>}
+          {currentView === "viewCases" ? (
+            <h2>Case Lookup</h2>
+          ) : (
+            currentView === "createCase" && <h2>Create Case</h2>
+          )}
           {currentView === "viewCases" && !isCaseDetails && (
             <>
               <p className={s.filtersNotice}>
-                Use filters below or leave empty to
-                retrieve all records
+                Use filters below or leave empty to retrieve all records
               </p>
               <form
                 className={`${s.caseSearchForm} wrapper`}
@@ -71,7 +74,7 @@ const Case = () => {
                   id="caseNum"
                   label="Case No"
                   variant="standard"
-                  sx={{ width: 80, marginRight: "20px" }}
+                  className={s.caseFormNo}
                   value={caseData.caseNo}
                   onChange={(e) =>
                     setCaseData({ ...caseData, caseNo: e.target.value })
@@ -81,7 +84,7 @@ const Case = () => {
                   id="caseId"
                   label="Case ID (Unique - 24 characters)"
                   variant="standard"
-                  sx={{ minWidth: 240, marginRight: "20px" }}
+                  className={s.caseFormId}
                   value={caseData.caseId}
                   onChange={(e) =>
                     setCaseData({
@@ -91,10 +94,7 @@ const Case = () => {
                   }
                   inputProps={{ maxLength: 24 }}
                 />
-                <FormControl
-                  variant="standard"
-                  sx={{ minWidth: 170, marginRight: "20px" }}
-                >
+                <FormControl variant="standard" className={s.caseFormType}>
                   <InputLabel id="case-type">Type</InputLabel>
                   <Select
                     labelId="case-type"
@@ -130,40 +130,42 @@ const Case = () => {
                   </Select>
                 </FormControl>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateField
-                    sx={{ width: 130 }}
-                    variant="standard"
-                    label="Earliest Date"
-                    value={caseData.caseDateE}
-                    onChange={(e: any) =>
-                      setCaseData({ ...caseData, caseDateE: e })
-                    }
-                  />
-                  <IconButton
-                    sx={{ marginRight: "20px" }}
-                    onClick={(e: any) =>
-                      setCaseData({ ...caseData, caseDateE: null })
-                    }
-                  >
-                    <ClearIcon />
-                  </IconButton>
-                  <DateField
-                    sx={{ width: 130 }}
-                    variant="standard"
-                    label="Before Date"
-                    value={caseData.caseDateL}
-                    onChange={(e: any) =>
-                      setCaseData({ ...caseData, caseDateL: e })
-                    }
-                  />
-                  <IconButton
-                    sx={{ marginRight: "20px" }}
-                    onClick={(e: any) =>
-                      setCaseData({ ...caseData, caseDateL: null })
-                    }
-                  >
-                    <ClearIcon />
-                  </IconButton>
+                  <div className={s.caseFormE}>
+                    <DateField
+                      variant="standard"
+                      label="Earliest Date"
+                      value={caseData.caseDateE}
+                      onChange={(e: any) =>
+                        setCaseData({ ...caseData, caseDateE: e })
+                      }
+                    />
+                    <IconButton
+                      sx={{ marginRight: "20px" }}
+                      onClick={(e: any) =>
+                        setCaseData({ ...caseData, caseDateE: null })
+                      }
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </div>
+                  <div className={s.caseFormB}>
+                    <DateField
+                      variant="standard"
+                      label="Before Date"
+                      value={caseData.caseDateL}
+                      onChange={(e: any) =>
+                        setCaseData({ ...caseData, caseDateL: e })
+                      }
+                    />
+                    <IconButton
+                      sx={{ marginRight: "20px" }}
+                      onClick={(e: any) =>
+                        setCaseData({ ...caseData, caseDateL: null })
+                      }
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </div>
                 </LocalizationProvider>
                 <Button type="submit" variant="contained">
                   Search

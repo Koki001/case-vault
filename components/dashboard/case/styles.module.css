@@ -41,6 +41,30 @@
   height: 40px;
   align-self: flex-end;
 }
+.caseSearchForm .caseFormNo {
+  width: 70px;
+  margin-right: 20px;
+}
+.caseSearchForm .caseFormId {
+  width: 300px;
+  margin-right: 20px;
+}
+.caseSearchForm .caseFormType {
+  width: 180px;
+  margin-right: 20px;
+}
+.caseSearchForm .caseFormE {
+  width: 180px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.caseSearchForm .caseFormB {
+  width: 180px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .caseContainer .dynamicFields {
   display: flex;
   align-items: center;
@@ -231,4 +255,70 @@
 }
 .styledRowOpen {
   background-color: #e3f2fd !important;
+}
+
+@media (max-width: 1200px) {
+  .caseOptionsNav .caseSearchForm {
+    width: 800px;
+    justify-content: space-between;
+  }
+  .caseSearchForm button {
+    align-self: flex-end;
+  }
+  .caseSearchForm .caseFormNo {
+    width: 15%;
+    margin-right: 20px;
+  }
+  .caseSearchForm .caseFormId {
+    width: 35%;
+    margin-right: 20px;
+  }
+  .caseSearchForm .caseFormType {
+    width: 35%;
+    margin-right: 20px;
+  }
+  .caseSearchForm .caseFormE {
+    width: 40%;
+  }
+  .caseFormE > div:first-child {
+width: 100%;
+  }
+  .caseSearchForm .caseFormB {
+    width: 40%;
+  }
+    .caseFormB > div:first-child {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .caseOptionsNav .caseSearchForm {
+    width: 380px;
+    justify-content: center;
+  }
+  .caseSearchForm button {
+    margin-right: 0;
+  }
+  .caseSearchForm .caseFormNo {
+    width: 90%;
+    margin-right: 0;
+  }
+  .caseSearchForm .caseFormId {
+    width: 90%;
+    margin-right: 0;
+  }
+  .caseSearchForm .caseFormType {
+    width: 90%;
+    margin-right: 0;
+  }
+  .caseSearchForm .caseFormE {
+    width: 90%;
+    margin-right: 0;
+    justify-content: space-between;
+  }
+  .caseSearchForm .caseFormB {
+    width: 90%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    justify-content: space-between;
+  }
 }
