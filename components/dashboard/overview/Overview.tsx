@@ -30,7 +30,7 @@ const Overview = () => {
   } = usePagination({ data: tasks, maxPerPage: 4 });
   return (
     <div className={`${s.overviewContainer} wrapper`}>
-      <h2>Today`s Tasks</h2>
+      <h2>Today&apos;s Tasks</h2>
       <div className={s.taskContainerMain}>
         <div className={s.overviewContainerTasks}>
           {currentItems?.map((t, index) => {
@@ -50,13 +50,28 @@ const Overview = () => {
             <IconButton onClick={() => prevPage()}>
               <ChevronLeftIcon />
             </IconButton>
-            <p>{currentPage} of {totalPages}</p>
+            <p>
+              {currentPage} of {totalPages}
+            </p>
             <IconButton onClick={() => nextPage()}>
               <ChevronRightIcon />
             </IconButton>
           </div>
         </div>
-        <TaskCalendar />
+        <div className={s.overviewCalendar}>
+          <TaskCalendar />
+          <div className={s.taskLegend}>
+            <p>
+              <span className={s.taskComplete}></span>Complete
+            </p>
+            <p>
+              <span className={s.taskPending}></span>Pending
+            </p>
+            <p>
+              <span className={s.taskIncomplete}></span>Incomplete
+            </p>
+          </div>
+        </div>
       </div>
       <div className={s.overviewCrimeStats}>
         <h2>Number of incidents by jursidiction</h2>

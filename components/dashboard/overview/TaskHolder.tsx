@@ -18,12 +18,24 @@ const TaskHolder: React.FC<TaskProps> = ({
   notes,
   location,
 }) => {
+  let statusColor: string = "";
+
+  if (status === "complete") {
+    statusColor = "Green";
+  }
+  if (status === "incomplete") {
+    statusColor = "Red";
+  }
+  if (status === "pending") {
+    statusColor = "Orange";
+  }
+
   return (
     <Paper elevation={3} className={s.taskCard}>
       <div className={s.taskCardHeading}>
         <div className={s.taskCardHeadingLeft}>
           <h3>{type}</h3>
-          <span>{status}</span>
+          <span className={`${s.taskCardStatus} ${s[statusColor]}`}></span>
         </div>
         <p>{time}</p>
       </div>

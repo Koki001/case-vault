@@ -54,7 +54,41 @@
   justify-content: center;
   align-items: center;
 }
-
+.overviewCalendar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.taskLegend {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.taskLegend span {
+  display: block;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  margin-bottom: 10px;
+}
+.taskComplete {
+  background-color: rgba(0, 128, 0, 0.65);
+}
+.taskPending {
+  background-color: rgba(255, 166, 0, 0.65);
+}
+.taskIncomplete {
+  background-color: rgba(255, 0, 0, 0.65);
+}
+.taskLegend p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .calendarContainer {
   height: 350px;
   width: 350px;
@@ -71,14 +105,16 @@
   margin-right: 50px;
   margin-bottom: 12px;
   height: 100px;
-  background-color: rgba(206, 224, 224, 0.452);
+ background: rgb(201,221,224);
+background: linear-gradient(0deg, rgb(233, 236, 236) 0%, rgba(255,255,255,1) 100%);
 }
 .taskCard:hover {
   cursor: pointer;
-   background-color: rgba(244, 254, 255, 0.452);
+  background: rgb(194,222,227);
+background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(235,235,235,1) 100%);
 }
 .taskCardHeading {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -89,7 +125,7 @@
   margin: 0;
 }
 .taskCardHeading span {
-  margin-left: 30px;
+  margin-left: 10px;
 }
 .taskCardContent {
   height: 65%;
@@ -121,6 +157,23 @@
 .taskCardContentLeft + p {
   text-align: right;
 }
+
+.taskCardStatus {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
+.Green {
+  background-color: rgba(0, 128, 0, 0.65);
+}
+.Orange {
+  background-color: rgba(255, 166, 0, 0.65);
+}
+.Red {
+  background-color: rgba(255, 0, 0, 0.65);
+}
+
+
 @media (max-width: 1200px) {
   .taskContainerMain {
     flex-direction: column;

@@ -73,7 +73,7 @@ export const tasks = [
   },
   {
     type: "Community Work",
-    status: "complete",
+    status: "pending",
     time: "16:30",
     description:
       "Hosting a neighborhood watch meeting at the community center. Officers will discuss recent crime trends and provide residents with tips on crime prevention and home security.",
