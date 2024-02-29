@@ -160,8 +160,8 @@ background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(235,235,235,1) 100
 }
 
 .taskCardStatus {
-  height: 15px;
-  width: 15px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
 }
 .Green {

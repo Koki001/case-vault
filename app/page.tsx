@@ -44,12 +44,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const Home = () => {
-  const [expanded, setExpanded] = useState<string | false>("panel0");
 
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
   return (
     <main className={`${s.mainContainerTag} wrapper`}>
       <h1>Case Vault</h1>
@@ -66,7 +61,8 @@ const Home = () => {
           enter the site!
           <p>
             You can get back to this page by clicking on the police logo in the
-            top left corner of the page.
+            top left corner of the page or follow the Landing Page link found in
+            the &apos;support&apos; tab of the navigation bar.
           </p>
         </p>
         <p>
@@ -87,8 +83,8 @@ const Home = () => {
         <h2>Current Features</h2>
         <Accordion
           sx={{ backgroundColor: "transparent" }}
-          expanded={expanded === "panel0"}
-          onChange={handleChange("panel0")}
+          
+          
         >
           <AccordionSummary aria-controls="panel0d-content" id="panel0d-header">
             <Typography>Authentication</Typography>
@@ -126,8 +122,8 @@ const Home = () => {
         </Accordion>
         <Accordion
           sx={{ backgroundColor: "transparent" }}
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
+          
+          
         >
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Overview</Typography>
@@ -144,8 +140,8 @@ const Home = () => {
         </Accordion>
         <Accordion
           sx={{ backgroundColor: "transparent" }}
-          expanded={expanded === "panel2"}
-          onChange={handleChange("panel2")}
+          
+          
         >
           <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
             <Typography>Cases</Typography>
@@ -166,8 +162,8 @@ const Home = () => {
         </Accordion>
         <Accordion
           sx={{ backgroundColor: "transparent" }}
-          expanded={expanded === "panel3"}
-          onChange={handleChange("panel3")}
+          
+          
         >
           <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
             <Typography>Evidence</Typography>
@@ -188,8 +184,8 @@ const Home = () => {
         </Accordion>
         <Accordion
           sx={{ backgroundColor: "transparent" }}
-          expanded={expanded === "panel4"}
-          onChange={handleChange("panel4")}
+          
+          
         >
           <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
             <Typography>Storage</Typography>
@@ -202,8 +198,8 @@ const Home = () => {
         </Accordion>
         <Accordion
           sx={{ backgroundColor: "transparent" }}
-          expanded={expanded === "panel5"}
-          onChange={handleChange("panel5")}
+          
+          
         >
           <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
             <Typography>Tracking</Typography>
@@ -216,8 +212,8 @@ const Home = () => {
         </Accordion>
         <Accordion
           sx={{ backgroundColor: "transparent" }}
-          expanded={expanded === "panel6"}
-          onChange={handleChange("panel6")}
+          
+          
         >
           <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
             <Typography>Support</Typography>
@@ -231,9 +227,7 @@ const Home = () => {
       </Paper>
       <Paper className={s.futurePlans} elevation={8}>
         <h2>Future Plans</h2>
-        <p>
-          future plans here
-        </p>
+        <p>future plans here</p>
       </Paper>
       <Paper className={s.notice} elevation={8}>
         <h2>* Notice</h2>
