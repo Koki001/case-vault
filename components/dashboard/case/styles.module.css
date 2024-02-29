@@ -83,6 +83,7 @@
 }
 .caseContainer .createCaseContainer {
   padding: 20px 0;
+  max-width: 1100px;
 }
 .createCaseContainer .createCaseHeadings {
   display: flex;
@@ -146,17 +147,14 @@
 
 .caseDetailsReportParagraph {
   white-space: pre-line;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  padding: 20px;
-  background-color: #e3f2fd;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .caseDetailsReportParagraph div:first-child {
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
+  padding: 50px 30px;
 }
 .caseDetailsReportParagraph h1 {
   text-align: center;
@@ -218,9 +216,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  padding: 30px;
+  padding: 50px 30px;
   margin-top: 30px;
-  border: 2px solid black;
   border-radius: 5px;
 }
 .evidenceHolder .evidenceHolderDescription {

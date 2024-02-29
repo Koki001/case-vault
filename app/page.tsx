@@ -149,13 +149,13 @@ const Home = () => {
           <AccordionDetails>
             <Typography>
               <p>
-                <span>Create Case</span> - Selecting &apos;and&apos;
+                <span>Create Case</span> - Selecting &apos;Add&apos; from the Cases tab allows users to create a new case and add it to the MongoDB database. The case report can either be typed or a file can be uploaded. Only .txt, .doc, and .docx file extensions are allowed. If the case is typed, a txt file is created and all files get uploaded using Amazon&apos;s S3 storage.
               </p>
               <p>
-                <span>View Cases</span> - Selecting &apos;view&apos;
+                <span>View Cases</span> - Selecting &apos;View&apos; allows users to view any case from the database. There are several optional filters that can be used like case number, ID, type of case, and a date range. The displayed cases highlight important information and can be clicked to view further details about the case.
               </p>
               <p>
-                <span>Case Details</span> - Clicking on
+                <span>Case Details</span> - Opening an individual case shows a more detailed view of it and allows the user to read the report, view victims, suspects, witnesses, and the ability to see and add new evidence associated with that case.
               </p>
             </Typography>
           </AccordionDetails>

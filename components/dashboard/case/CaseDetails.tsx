@@ -6,7 +6,7 @@ import Loader from "@/components/loader/Loader";
 import { useCaseStore } from "@/store/caseSlice";
 
 import s from "./styles.module.css";
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Modal, Paper, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import UploadEvidence from "../evidence/UploadEvidence";
 import { useEvidenceStore } from "../../../store/evidenceSlice";
@@ -173,7 +173,7 @@ const CaseDetails = () => {
             // <p className={s.caseDetailsReportParagraph}>{fullReport}</p>
 
             <div className={s.caseDetailsReportParagraph}>
-              <div>{parse(fullReport)}</div>
+              <Paper elevation={3}>{parse(fullReport)}</Paper>
             </div>
           )}
           <ul className={s.extraInfoUl}>
@@ -260,7 +260,7 @@ const CaseDetails = () => {
               <div className={s.evidenceInternal}>
                 {caseDetails.evidence.map((item, index) => {
                   return (
-                    <div className={s.evidenceHolder} key={"evidence" + index}>
+                    <Paper elevation={2} className={s.evidenceHolder} key={"evidence" + index}>
                       <div className={s.evidenceHolderTop}>
                         <div>
                           <p>Evidence ID: {item.id}</p>
@@ -318,7 +318,7 @@ const CaseDetails = () => {
                           )}
                         </Box>
                       </Modal>
-                    </div>
+                    </Paper>
                   );
                 })}
               </div>
