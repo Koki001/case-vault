@@ -44,7 +44,7 @@ const Case = () => {
     newView: string
   ) => {
     if (newView !== null) {
-      router.push(`?view=case&caseOptions=${newView}`);
+      router.push(`/dashboard?view=case&caseOptions=${newView}`);
     }
   };
 

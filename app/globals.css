@@ -246,10 +246,6 @@ h5 {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  background-image: url("/backgrounds/file.gif");
-  background-repeat: no-repeat;
-  background-position: center 135px;
-  background-size: 150px 150px;
 }
 .noResultsGlobal h2 {
   color: rgba(0, 0, 0, 0.5);

@@ -105,9 +105,13 @@
   align-items: center;
 }
 .navContainerFiller li {
-  margin: 10px;
+  margin: 2px 5px;
   font-size: 18px;
   width: 140px;
+}
+.navContainerFiller li button {
+  padding: 2px;
+  background-color: rgba(255, 255, 255, 0.849);
 }
 .navContainerFiller li * {
   width: 100%;

@@ -37,7 +37,7 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
   );
 
   const handleCaseDetails = async (selectedCase: any) => {
-    router.push(`?view=${currentView}&id=${selectedCase.id}`);
+    router.push(`/dashboard?view=${currentView}&id=${selectedCase.id}`);
   };
 
   return (

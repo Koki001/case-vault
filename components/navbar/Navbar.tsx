@@ -91,18 +91,18 @@ const Navbar = () => {
 
     if (clickedMenuItem === "Add") {
       if (openCases) {
-        router.push(`?view=case&caseOptions=createCase`);
+        router.push(`/dashboard?view=case&caseOptions=createCase`);
         setShowNav(false);
       } else if (openEvidence) {
-        router.push(`?view=evidence&evidenceOptions=uploadEvidence`);
+        router.push(`/dashboard?view=evidence&evidenceOptions=uploadEvidence`);
         setShowNav(false);
       }
     } else if (clickedMenuItem === "View") {
       if (openCases) {
-        router.push(`?view=case&caseOptions=viewCases`);
+        router.push(`/dashboard?view=case&caseOptions=viewCases`);
         setShowNav(false);
       } else if (openEvidence) {
-        router.push(`?view=evidence&evidenceOptions=viewEvidence`);
+        router.push(`/dashboard?view=evidence&evidenceOptions=viewEvidence`);
         setShowNav(false);
       }
     }
@@ -141,7 +141,7 @@ const Navbar = () => {
               <CircleIcon color="success" />
               <div className={s.navUserInfoName}>
                 <h3>
-                  <span>{firstName}{" "}</span>
+                  <span>{firstName} </span>
                   <span>{lastName}</span>
                 </h3>
                 <h4>Badge #{badgeNumber}</h4>
@@ -161,6 +161,7 @@ const Navbar = () => {
                     disableRipple
                     sx={{ ...sidebarStyleObj, color: "black" }}
                     value="overview"
+                    onClick={() => router.push("/dashboard?view=overview")}
                   >
                     overview
                   </ToggleButton>
@@ -455,16 +456,7 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button variant="outlined">Recharts</Button>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://developer.mozilla.org/en-US/docs/Web/CSS"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="outlined">CSS Modules</Button>
+                <Button variant="outlined">Chart.js</Button>
               </a>
             </li>
           </ul>

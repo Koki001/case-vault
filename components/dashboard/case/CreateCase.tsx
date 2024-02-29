@@ -177,7 +177,7 @@ const CreateCase = () => {
               officerInCharge: [],
             });
             setUpdate(false);
-            router.push(`?view=case`);
+            router.push(`/dashboard?view=case`);
           }
         }
       } catch (error) {

@@ -44,7 +44,7 @@ const Evidence = () => {
     newView: string
   ) => {
     if (newView !== null) {
-      router.push(`?view=evidence&evidenceOptions=${newView}`);
+      router.push(`/dashboard?view=evidence&evidenceOptions=${newView}`);
     }
   };
 
