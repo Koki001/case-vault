@@ -1,0 +1,13 @@
+/* .documentationContainer * {
+  border: 1px solid red;
+} */
+.documentationContainer {
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.documentationContainer h2 {
+  margin-top: 20px;
+}

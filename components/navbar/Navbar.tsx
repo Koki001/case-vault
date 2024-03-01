@@ -327,6 +327,7 @@ const Navbar = () => {
                     disableRipple
                     sx={{ ...sidebarStyleObj, color: "black" }}
                     value="storage"
+                    disabled
                   >
                     storage
                   </ToggleButton>
@@ -336,6 +337,7 @@ const Navbar = () => {
                     disableRipple
                     sx={{ ...sidebarStyleObj, color: "black" }}
                     value="tracking"
+                    disabled
                   >
                     tracking
                   </ToggleButton>

@@ -77,15 +77,11 @@ const Home = () => {
           space where users can manage all sorts of criminal cases and evidence
           associated with them.
         </p>
-        <p>It was orignally meant to be an evidence manager only - but</p>
+        <p>It was orignally meant to only be an evidence manager, but I wanted to create a more robust application as time went on and kept adding more features. Currently, the core functionality of the evidence and case management is complete, although there are still more features I&apos;d like to implement.</p>
       </Paper>
       <Paper className={s.currentFeatures} elevation={8}>
         <h2>Current Features</h2>
-        <Accordion
-          sx={{ backgroundColor: "transparent" }}
-          
-          
-        >
+        <Accordion sx={{ backgroundColor: "transparent" }}>
           <AccordionSummary aria-controls="panel0d-content" id="panel0d-header">
             <Typography>Authentication</Typography>
           </AccordionSummary>
@@ -120,11 +116,7 @@ const Home = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          sx={{ backgroundColor: "transparent" }}
-          
-          
-        >
+        <Accordion sx={{ backgroundColor: "transparent" }}>
           <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
             <Typography>Overview</Typography>
           </AccordionSummary>
@@ -138,55 +130,60 @@ const Home = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          sx={{ backgroundColor: "transparent" }}
-          
-          
-        >
+        <Accordion sx={{ backgroundColor: "transparent" }}>
           <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
             <Typography>Cases</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
               <p>
-                <span>Create Case</span> - Selecting &apos;Add&apos; from the Cases tab allows users to create a new case and add it to the MongoDB database. The case report can either be typed or a file can be uploaded. Only .txt, .doc, and .docx file extensions are allowed. If the case is typed, a txt file is created and all files get uploaded using Amazon&apos;s S3 storage.
+                <span>Create Case</span> - Selecting &apos;Add&apos; from the
+                Cases tab allows users to create a new case and add it to the
+                MongoDB database. The case report can either be typed or a file
+                can be uploaded. Only .txt, .doc, and .docx file extensions are
+                allowed. If the case is typed, a txt file is created and all
+                files get uploaded using Amazon&apos;s S3 storage.
               </p>
               <p>
-                <span>View Cases</span> - Selecting &apos;View&apos; allows users to view any case from the database. There are several optional filters that can be used like case number, ID, type of case, and a date range. The displayed cases highlight important information and can be clicked to view further details about the case.
+                <span>View Cases</span> - Selecting &apos;View&apos; allows
+                users to view any case from the database. There are several
+                optional filters that can be used like case number, ID, type of
+                case, and a date range. The displayed cases highlight important
+                information and can be clicked to view further details about the
+                case.
               </p>
               <p>
-                <span>Case Details</span> - Opening an individual case shows a more detailed view of it and allows the user to read the report, view victims, suspects, witnesses, and the ability to see and add new evidence associated with that case.
+                <span>Case Details</span> - Opening an individual case shows a
+                more detailed view of it and allows the user to read the report,
+                view victims, suspects, witnesses, and the ability to see and
+                add new evidence associated with that case.
               </p>
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          sx={{ backgroundColor: "transparent" }}
-          
-          
-        >
+        <Accordion sx={{ backgroundColor: "transparent" }}>
           <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
             <Typography>Evidence</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
               <p>
-                <span>Upload Evidence</span> - Selecting &apos;and&apos;
+                <span>Upload Evidence</span> - Similar to cases, selecting
+                &apos;Add&apos; within the Evidence tab allows the user to add
+                evidence to an already existing case. The case IDs are
+                pre-populated with a list of all open cases for ease of use.
+                Images are stored in Amazon&apos;s S3 cloud storage.
               </p>
               <p>
-                <span>View Evidence</span> - Selecting &apos;view&apos;
+                <span>View Evidence</span> - Selecting &apos;View&apos; brings the user to a page where all evidence can be interacted with. There are several filters in place to narrow down your search, or the filters can be left empty to fetch all pieces of evidence in the database.
               </p>
               <p>
-                <span>Evidence Details</span> - Clicking on
+                <span>Evidence Details</span> - Clicking on any piece of evidence takes the user to a more detailed eview with a larger image.
               </p>
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          sx={{ backgroundColor: "transparent" }}
-          
-          
-        >
+        <Accordion sx={{ backgroundColor: "transparent" }}>
           <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
             <Typography>Storage</Typography>
           </AccordionSummary>
@@ -196,11 +193,7 @@ const Home = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          sx={{ backgroundColor: "transparent" }}
-          
-          
-        >
+        <Accordion sx={{ backgroundColor: "transparent" }}>
           <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
             <Typography>Tracking</Typography>
           </AccordionSummary>
@@ -210,11 +203,7 @@ const Home = () => {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          sx={{ backgroundColor: "transparent" }}
-          
-          
-        >
+        <Accordion sx={{ backgroundColor: "transparent" }}>
           <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
             <Typography>Support</Typography>
           </AccordionSummary>
