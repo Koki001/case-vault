@@ -220,13 +220,13 @@
   flex-wrap: wrap;
 }
 .evidenceHolder {
-  width: 600px;
+  width: 550px;
   min-width: 385px;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
   padding: 50px 30px;
-  margin-top: 30px;
+  margin: 30px 5px;
   border-radius: 5px;
 }
 .evidenceHolder .evidenceHolderDescription {
