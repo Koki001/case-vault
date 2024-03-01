@@ -124,6 +124,7 @@ const UploadEvidence = ({ propId, closeFunc }: any) => {
     });
     setNotification(!isValid, notificationMessage);
     if (isValid) {
+   
       try {
         const res = await fetch("api/addEvidence", {
           method: "POST",
@@ -133,7 +134,7 @@ const UploadEvidence = ({ propId, closeFunc }: any) => {
         if (res.ok) {
           setEvidence(initialEvidenceState);
           setPhoto(null);
-          // setUpdate(true);
+          setUpdate(true);
         }
       } catch (error) {
         console.log(error);

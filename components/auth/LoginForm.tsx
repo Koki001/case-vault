@@ -2,11 +2,12 @@
 
 import { Button, TextField } from "@mui/material";
 import { signIn } from "next-auth/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import s from "./styles.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuthStore } from "../../store/authSlice";
+import { useNotificationStore } from "../../store/notificationSlice";
 
 export const LoginForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -14,7 +15,9 @@ export const LoginForm = () => {
   const router = useRouter();
   const setLoading = useAuthStore((state) => state.setLoading);
   const loading = useAuthStore((state) => state.loading);
-
+  const params = useSearchParams()
+  const notification = useNotificationStore((state) => state.setNotification)
+  
   const handleDemoMichael = async () => {
     const email = "msmith@mail.com";
     const password = "123123";
@@ -70,16 +73,21 @@ export const LoginForm = () => {
         password,
         redirect: true,
       });
-      setLoading(false);
       if (res) {
         setLoading(false);
         console.log(res, "REGULAR");
-        // router.push("/dashboard");
-      }
+      } 
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    const error = params.get("error")
+    if (error){
+      notification(true, "Invalid Credentials")
+      router.push("/login")
+    }
+  }, [params])
 
   return (
     <form className={s.loginFormContainer} onSubmit={handleLogin}>
@@ -91,7 +99,8 @@ export const LoginForm = () => {
           type="text"
           label="Badge Number"
           fullWidth
-          required
+          // required
+          disabled
         />
       </div>
       <div>
@@ -102,11 +111,13 @@ export const LoginForm = () => {
           type="password"
           label="Password"
           fullWidth
-          required
+          // required
+          disabled
         />
       </div>
       <Button
-        disabled={loading}
+        // disabled={loading}
+        disabled
         type="submit"
         variant="contained"
         color="primary"

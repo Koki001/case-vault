@@ -262,3 +262,10 @@ footer {
   padding: 100px 0;
   width: 80%;
 } */
+
+@media (max-width: 600px){
+  .noResultsGlobal {
+    height: auto;
+    margin-top: 50px;
+  }
+}

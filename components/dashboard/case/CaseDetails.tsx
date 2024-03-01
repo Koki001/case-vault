@@ -64,7 +64,7 @@ const CaseDetails = () => {
           },
           body: JSON.stringify({ caseId: selectedCase }),
         });
-
+        
         if (response.ok) {
           const data = await response.json();
           // setCaseDetails(data.case);
@@ -122,8 +122,9 @@ const CaseDetails = () => {
     position: "absolute" as "absolute",
     top: "50%",
     left: "50%",
+    minWidth: "50vw",
+    minHeight: "50vh",
     transform: "translate(-50%, -50%)",
-    height: "90%",
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
@@ -152,8 +153,8 @@ const CaseDetails = () => {
           </div>
           <ul className={s.caseDetailsHeadingList}>
             <li>Case ID: {caseDetails.id}</li>
-            <li>{formatDate(caseDetails.createdAt)}</li>
-            <li>{caseDetails.type}</li>
+            <li>Created on: {formatDate(caseDetails.createdAt)}</li>
+            <li>Case type: {caseDetails.type}</li>
             <li className={s.leadInvestigatorListItem}>
               Lead Investigator(s):{" "}
               {caseDetails.officersInCharge.map((item, index) => {
