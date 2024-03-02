@@ -211,11 +211,11 @@
     border-radius: 5px;
   }
   .muiDropDown ul > svg:first-child {
-    top: 40px;
+    top: 20px;
     right: 30px;
   }
   .muiDropDown ul > svg:nth-child(2) {
-    bottom: 40px;
+    bottom: 20px;
     right: 30px;
   }
 }
