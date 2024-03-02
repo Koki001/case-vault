@@ -33,6 +33,7 @@ const EvidenceDetails = () => {
   // Get necessary data from the store and search params
   const setUpdate = useEvidenceStore((state) => state.setUpdate);
   const update = useEvidenceStore((state) => state.update);
+  const associatedCase = useEvidenceStore((state) =>state.evidence)
   const searchParams = useSearchParams();
   const evidenceIdParams = searchParams?.get("evidenceId");
   const router = useRouter();
@@ -40,7 +41,7 @@ const EvidenceDetails = () => {
   // State to hold evidence details
   const [evidenceDetails, setEvidenceDetails] =
     useState<EvidenceDetailsState | null>(null);
-
+  const [caseId, setCaseId] = useState("")
   // Function to format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -53,7 +54,15 @@ const EvidenceDetails = () => {
     };
     return new Intl.DateTimeFormat("en-US", options).format(date);
   };
-
+  useEffect(() => {
+    if (associatedCase && evidenceDetails){
+      associatedCase.forEach((item) => {
+        if (item.id === evidenceDetails.id){
+          setCaseId(item.caseId)
+        }
+      })
+    }
+  },[evidenceDetails])
   // Effect to fetch evidence details
   useEffect(() => {
     const handleEvidenceDetails = async (selectedEvidence: any) => {
@@ -123,6 +132,17 @@ const EvidenceDetails = () => {
                   </p>
                 </div>
               </div>
+              <Button
+              sx={{width: "100%"}}
+              variant="outlined"
+                onClick={() =>
+                  router.push(
+                    `/dashboard?view=case&id=${caseId}`
+                  )
+                }
+              >
+                View associated case
+              </Button>
             </div>
           ) : (
             update && <Loader />
