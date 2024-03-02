@@ -153,16 +153,9 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
                       <StyledTableCell sx={{ maxWidth: "100px" }}>
                         Case ID
                       </StyledTableCell>
-                      {/* <StyledTableCell align="right">Description</StyledTableCell> */}
-                      <StyledTableCell align="right">
-                        Location Found
-                      </StyledTableCell>
                       <StyledTableCell align="right">Type</StyledTableCell>
                       <StyledTableCell align="right">Status</StyledTableCell>
                       <StyledTableCell align="right">Photo</StyledTableCell>
-                      <StyledTableCell align="right">
-                        Date Found
-                      </StyledTableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -188,7 +181,7 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
                           >
                             <StyledTableCell
                               sx={{
-                                minWidth: "100px",
+                                minWidth: "80px",
                                 whiteSpace: "nowrap",
                                 overflow: "hidden",
                                 textOverflow: "ellipsis",
@@ -199,27 +192,13 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
                               {item.caseId}
                             </StyledTableCell>
                             <StyledTableCell
-                              sx={{
-                                maxWidth: "300px",
-                                whiteSpace: "nowrap",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                              }}
-                              align="right"
-                            >
-                              {item.locationFound}
-                            </StyledTableCell>
-                            {/* <StyledTableCell align="right">
-                            {item.description}
-                          </StyledTableCell> */}
-                            <StyledTableCell
-                              sx={{ minWidth: "130px" }}
+                              sx={{ minWidth: "80px" }}
                               align="right"
                             >
                               {item.type}
                             </StyledTableCell>
                             <StyledTableCell
-                              sx={{ minWidth: "130px" }}
+                              sx={{ minWidth: "80px" }}
                               align="right"
                             >
                               {item.status}
@@ -234,12 +213,6 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
                                 />
                               )}
                             </StyledTableCell>
-                            <StyledTableCell
-                              sx={{ minWidth: "130px" }}
-                              align="right"
-                            >
-                              {formattedAddedOn}
-                            </StyledTableCell>
                           </StyledTableRowEvidence>
                         );
                       })}
@@ -252,7 +225,9 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
           ) : (
             !update &&
             evidence.length === 0 && (
-              <div className="noResultsGlobal"><h2>NO RESULTS</h2></div>
+              <div className="noResultsGlobal">
+                <h2>NO RESULTS</h2>
+              </div>
             )
           )}
         </div>
