@@ -97,7 +97,7 @@ const ViewCases = ({ caseFilters }: Props) => {
               setUpdate(false);
             } else {
               setUpdate(false);
-              setNotification(true, "Something went wrong");
+              setNotification(true, "Invalid filter entries. Please make sure that Case No, Case ID, and date values are properly formatted.");
             }
           } catch (error) {
             console.log(error);

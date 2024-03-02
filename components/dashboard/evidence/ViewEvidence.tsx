@@ -102,9 +102,12 @@ const ViewEvidence = ({ evidenceFilters }: Props) => {
               setUpdate(false);
             } else {
               setUpdate(false);
+              setNotification(true, "Invalid filter entries. Please make sure the Case ID and Dates are properly formatted.");
+              setEvidence([])
             }
           } catch (error) {
-            console.log(error);
+            console.log(error, "error");
+            setNotification(true, "Something went wrong.");
             setUpdate(false);
           }
         };
