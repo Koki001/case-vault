@@ -214,7 +214,32 @@ const Home = () => {
       </Paper>
       <Paper className={s.futurePlans} elevation={8}>
         <h2>Future Plans</h2>
-        <p>future plans here</p>
+        <p>
+          <span>Storage</span> - Implement the Storage tab functionality which
+          will provide detailed information of all evidence pieces and their
+          whereabouts. This will include the current location of the eevidence
+          and information about the particular facility in possession of it.
+        </p>
+        <p>
+          <span>Tracking</span> - The Tracking tab is meant to provide
+          information on the history of each piece of evidence - all of the
+          facilities it has been through and information on everyone who has
+          taken the piece of evidence out of storage including time stamps.
+        </p>
+        <p>
+          <span>Role Based Security</span> - Not every user will have the
+          ability to create new cases and upload evidence. Some may be
+          restricted to viewing only and some will have full control.
+        </p>
+        <p>
+          <span>Add Notes</span> - Implement the ability for users to add case
+          notes (similar to adding evidence).
+        </p>
+        <p>
+          <span>Overview</span> - Change the static information to tasks and a
+          schedule that users will be able to edit. This will include creating
+          new tasks, marking them complete, and viewing task details.
+        </p>
       </Paper>
       <Paper className={s.notice} elevation={8}>
         <h2>* Notice</h2>

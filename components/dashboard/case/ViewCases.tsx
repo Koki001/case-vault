@@ -158,8 +158,8 @@ const ViewCases = ({ caseFilters }: Props) => {
                       <StyledTableCell sx={{ minWidth: "90px" }}>
                         Case No
                       </StyledTableCell>
-                      <StyledTableCell sx={{ minWidth: "230px" }}>
-                        Case Unique ID
+                      <StyledTableCell sx={{ minWidth: "160px" }}>
+                        Title / Description
                       </StyledTableCell>
                       <StyledTableCell align="right" sx={{ maxWidth: "50px" }}>
                         Case Type
@@ -168,8 +168,8 @@ const ViewCases = ({ caseFilters }: Props) => {
                       <StyledTableCell align="right" sx={{ minWidth: "80px" }}>
                         Status
                       </StyledTableCell>
-                      <StyledTableCell align="right" sx={{ minWidth: "160px" }}>
-                        Title / Description
+                      <StyledTableCell align="right" sx={{ minWidth: "230px" }}>
+                        Case Unique ID
                       </StyledTableCell>
                       <StyledTableCell align="right" sx={{ minWidth: "120px" }}>
                         Created At
@@ -195,7 +195,9 @@ const ViewCases = ({ caseFilters }: Props) => {
           ) : (
             !update &&
             cases.length === 0 && (
-              <div className="noResultsGlobal"><h2>NO RESULTS</h2></div>
+              <div className="noResultsGlobal">
+                <h2>NO RESULTS</h2>
+              </div>
             )
           )}
         </div>

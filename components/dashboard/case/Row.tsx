@@ -70,16 +70,13 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
           </StyledTableCell>
           <StyledTableCell
             sx={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              width: "100px",
+              fontWeight: "bold",
             }}
           >
-            {row.id}
+            {row.description}
           </StyledTableCell>
           <StyledTableCell
-          align="right"
+            align="right"
             sx={{ maxWidth: "100px" }}
             component="th"
             scope="row"
@@ -90,13 +87,16 @@ const Row = ({ row, formatDate, cases, caseIndex }: any) => {
           <StyledTableCell align="right">{row.status}</StyledTableCell>
           <StyledTableCell
             sx={{
-              fontWeight: "bold",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              width: "100px",
             }}
             align="right"
             component="th"
             scope="row"
           >
-            {row.description}
+            {row.id}
           </StyledTableCell>
           <StyledTableCell align="right">
             {formatDate(row.createdAt)}

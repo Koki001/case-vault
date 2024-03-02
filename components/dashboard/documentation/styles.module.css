@@ -11,3 +11,54 @@
 .documentationContainer h2 {
   margin-top: 20px;
 }
+.documentationButton {
+  margin-bottom: 50px;
+}
+.faqContainer {
+  padding: 20px 40px;
+  margin: 30px 0;
+}
+.faqContainer ul {
+  text-align: left;
+  max-width: 1000px;
+}
+.otherQuestions {
+  margin: 20px 0;
+}
+
+.contactContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.contactContainer div {
+  border: 1px solid black;
+  padding: 10px 20px;
+  margin: 0 10px;
+  width: 250px;
+  margin-bottom: 30px;
+}
+.contactContainer h4 {
+  margin-bottom: 10px;
+}
+.contactContainer p {
+  margin: 0;
+  text-align: left;
+}
+.documentationSection div {
+  margin-bottom: 50px;
+  max-width: 1000px;
+}
+.documentationSection li {
+  text-align: left;
+  list-style: decimal;
+  margin-bottom: 15px;
+}
+.documentationSection h2 {
+  margin-bottom: 50px;
+  padding-top: 20px;
+  border-top: 1px solid black;
+}
