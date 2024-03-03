@@ -97,7 +97,10 @@ const ViewCases = ({ caseFilters }: Props) => {
               setUpdate(false);
             } else {
               setUpdate(false);
-              setNotification(true, "Invalid filter entries. Please make sure that Case No, Case ID, and date values are properly formatted.");
+              setNotification(
+                true,
+                "Invalid filter entries. Please make sure that Case No, Case ID, and date values are properly formatted."
+              );
             }
           } catch (error) {
             console.log(error);
@@ -110,7 +113,9 @@ const ViewCases = ({ caseFilters }: Props) => {
         // FETCH ALL CASES
         const fetchCases = async () => {
           try {
-            const response = await fetch("/api/fetchCases");
+            const response = await fetch("/api/fetchCases", {
+              cache: "no-store",
+            });
             if (response.ok) {
               const data = await response.json();
               setCases(data.cases);

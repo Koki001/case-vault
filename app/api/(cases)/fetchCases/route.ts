@@ -43,7 +43,7 @@ export const GET = async () => {
         };
       })
     );
-
+      console.log(populatedCases)
     return NextResponse.json({ cases: populatedCases }, { status: 200 });
   } catch (error) {
     console.error("Error fetching cases:", error);
